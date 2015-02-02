@@ -13,7 +13,7 @@ ALLOWED_HOSTS = (
 )
 
 ADMINS = (
-    # ('Your Name', 'your_email@example.com'),
+    ('alphagray', 'srboyce@outlook.com'),
 )
 
 MANAGERS = ADMINS
@@ -117,6 +117,7 @@ ROOT_URLCONF = 'DjangoWebProject.urls'
 WSGI_APPLICATION = 'DjangoWebProject.wsgi.application'
 
 TEMPLATE_DIRS = (
+    '/'
     # Put strings here, like "/home/html/django_templates" or
     # "C:/www/django/templates".
     # Always use forward slashes, even on Windows.

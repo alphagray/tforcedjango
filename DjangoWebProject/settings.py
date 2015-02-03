@@ -13,7 +13,11 @@ ALLOWED_HOSTS = (
 )
 
 ADMINS = (
+<<<<<<< HEAD
     ('alphagray', 'srboyce@outlook.com'),
+=======
+    # ('Your Name', 'your_email@example.com'),
+>>>>>>> c68cb2a6be822d6cc596cda0f926ac078527f34d
 )
 
 MANAGERS = ADMINS
@@ -108,7 +112,11 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     # Uncomment the next line for simple clickjacking protection:
+<<<<<<< HEAD
     #'django.middleware.clickjacking.XFrameOptionsMiddleware',
+=======
+    # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
+>>>>>>> c68cb2a6be822d6cc596cda0f926ac078527f34d
 )
 
 ROOT_URLCONF = 'DjangoWebProject.urls'
@@ -117,7 +125,10 @@ ROOT_URLCONF = 'DjangoWebProject.urls'
 WSGI_APPLICATION = 'DjangoWebProject.wsgi.application'
 
 TEMPLATE_DIRS = (
+<<<<<<< HEAD
     '/'
+=======
+>>>>>>> c68cb2a6be822d6cc596cda0f926ac078527f34d
     # Put strings here, like "/home/html/django_templates" or
     # "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
@@ -133,9 +144,15 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'app',
     # Uncomment the next line to enable the admin:
+<<<<<<< HEAD
     #'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     #'django.contrib.admindocs',
+=======
+    # 'django.contrib.admin',
+    # Uncomment the next line to enable admin documentation:
+    # 'django.contrib.admindocs',
+>>>>>>> c68cb2a6be822d6cc596cda0f926ac078527f34d
 )
 
 # A sample logging configuration. The only tangible logging

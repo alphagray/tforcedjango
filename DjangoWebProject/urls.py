@@ -7,9 +7,15 @@ from django.conf.urls import patterns, url
 from app.forms import BootstrapAuthenticationForm
 
 # Uncomment the next lines to enable the admin:
+<<<<<<< HEAD
 #from django.conf.urls import include
 #from django.contrib import admin
 #admin.autodiscover()
+=======
+# from django.conf.urls import include
+# from django.contrib import admin
+# admin.autodiscover()
+>>>>>>> c68cb2a6be822d6cc596cda0f926ac078527f34d
 
 urlpatterns = patterns('',
     # Examples:
@@ -36,8 +42,15 @@ urlpatterns = patterns('',
         name='logout'),
 
     # Uncomment the admin/doc line below to enable admin documentation:
+<<<<<<< HEAD
      #url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
     # Uncomment the next line to enable the admin:
      #url(r'^admin/', include(admin.site.urls)),
+=======
+    # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
+
+    # Uncomment the next line to enable the admin:
+    # url(r'^admin/', include(admin.site.urls)),
+>>>>>>> c68cb2a6be822d6cc596cda0f926ac078527f34d
 )

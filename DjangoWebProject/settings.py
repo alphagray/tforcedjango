@@ -14,7 +14,11 @@ ALLOWED_HOSTS = (
 
 ADMINS = (
 <<<<<<< HEAD
+<<<<<<< HEAD
     ('alphagray', 'srboyce@outlook.com'),
+=======
+    # ('Your Name', 'your_email@example.com'),
+>>>>>>> c68cb2a6be822d6cc596cda0f926ac078527f34d
 =======
     # ('Your Name', 'your_email@example.com'),
 >>>>>>> c68cb2a6be822d6cc596cda0f926ac078527f34d
@@ -113,7 +117,11 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     # Uncomment the next line for simple clickjacking protection:
 <<<<<<< HEAD
+<<<<<<< HEAD
     #'django.middleware.clickjacking.XFrameOptionsMiddleware',
+=======
+    # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
+>>>>>>> c68cb2a6be822d6cc596cda0f926ac078527f34d
 =======
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 >>>>>>> c68cb2a6be822d6cc596cda0f926ac078527f34d
@@ -126,7 +134,10 @@ WSGI_APPLICATION = 'DjangoWebProject.wsgi.application'
 
 TEMPLATE_DIRS = (
 <<<<<<< HEAD
+<<<<<<< HEAD
     '/'
+=======
+>>>>>>> c68cb2a6be822d6cc596cda0f926ac078527f34d
 =======
 >>>>>>> c68cb2a6be822d6cc596cda0f926ac078527f34d
     # Put strings here, like "/home/html/django_templates" or
@@ -145,9 +156,15 @@ INSTALLED_APPS = (
     'app',
     # Uncomment the next line to enable the admin:
 <<<<<<< HEAD
+<<<<<<< HEAD
     #'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     #'django.contrib.admindocs',
+=======
+    # 'django.contrib.admin',
+    # Uncomment the next line to enable admin documentation:
+    # 'django.contrib.admindocs',
+>>>>>>> c68cb2a6be822d6cc596cda0f926ac078527f34d
 =======
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:

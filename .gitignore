@@ -21,6 +21,8 @@
 =======
 =======
 >>>>>>> c68cb2a6be822d6cc596cda0f926ac078527f34d
+=======
+>>>>>>> c68cb2a6be822d6cc596cda0f926ac078527f34d
 # Python cache
 __pycache__/
 *.pyc
@@ -32,7 +34,10 @@ __pycache__/
 /bin/
 /obj/
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 53031a74f88de1ade57eec9ad8c2a82bade9da50
+=======
+>>>>>>> c68cb2a6be822d6cc596cda0f926ac078527f34d
 =======
 >>>>>>> c68cb2a6be822d6cc596cda0f926ac078527f34d
 
@@ -41,6 +46,7 @@ __pycache__/
 *.user
 *.sln.docstates
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 # Build results
@@ -174,6 +180,8 @@ App_Data/*.ldf
 =======
 =======
 >>>>>>> c68cb2a6be822d6cc596cda0f926ac078527f34d
+=======
+>>>>>>> c68cb2a6be822d6cc596cda0f926ac078527f34d
 # Auto-generated virtual environment
 /env/
 
@@ -183,7 +191,10 @@ App_Data/*.ldf
 # Auto-collected static files folder
 /static/
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 53031a74f88de1ade57eec9ad8c2a82bade9da50
+=======
+>>>>>>> c68cb2a6be822d6cc596cda0f926ac078527f34d
 =======
 >>>>>>> c68cb2a6be822d6cc596cda0f926ac078527f34d
 
@@ -197,6 +208,7 @@ Desktop.ini
 # Recycle Bin used on file shares
 $RECYCLE.BIN/
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 # Mac crap
@@ -237,6 +249,10 @@ pip-log.txt
 # Mac desktop service store files
 .DS_Store
 >>>>>>> 53031a74f88de1ade57eec9ad8c2a82bade9da50
+=======
+# Mac desktop service store files
+.DS_Store
+>>>>>>> c68cb2a6be822d6cc596cda0f926ac078527f34d
 =======
 # Mac desktop service store files
 .DS_Store

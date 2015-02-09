@@ -4,6 +4,8 @@
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <Name>DjangoWebProject</Name>
     <RootNamespace>DjangoWebProject</RootNamespace>
+    <InterpreterId>{ab0c86ff-2218-42e8-bfa4-622969422b5f}</InterpreterId>
+    <InterpreterVersion>2.7</InterpreterVersion>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -37,6 +39,10 @@
     <Compile Include="DjangoWebProject\settings.py" />
     <Compile Include="DjangoWebProject\urls.py" />
     <Compile Include="DjangoWebProject\wsgi.py" />
+    <Compile Include="tforce\models.py" />
+    <Compile Include="tforce\tests.py" />
+    <Compile Include="tforce\views.py" />
+    <Compile Include="tforce\__init__.py" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="app\" />
@@ -48,6 +54,8 @@
     <Folder Include="app\templates\" />
     <Folder Include="app\templates\app\" />
     <Folder Include="DjangoWebProject\" />
+    <Folder Include="tforce\" />
+    <Folder Include="tforce\templates\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="db.sqlite3" />
@@ -80,6 +88,7 @@
     <Content Include="app\templates\app\layout.html" />
     <Content Include="app\templates\app\login.html" />
     <Content Include="app\templates\app\loginpartial.html" />
+    <Content Include="tforce\templates\index.html" />
     <Content Include="web.config" />
     <Content Include="web.debug.config" />
   </ItemGroup>
@@ -87,6 +96,19 @@
     <None Include="readme.mht">
       <SubType>WebBrowser</SubType>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Interpreter Include="tforce\">
+      <Id>{ab0c86ff-2218-42e8-bfa4-622969422b5f}</Id>
+      <BaseInterpreter>{2af0f10d-7135-4994-9156-5d01c9c11b7e}</BaseInterpreter>
+      <Version>2.7</Version>
+      <Description>tforce (Python 2.7)</Description>
+      <InterpreterPath>Scripts\python.exe</InterpreterPath>
+      <WindowsInterpreterPath>Scripts\pythonw.exe</WindowsInterpreterPath>
+      <LibraryPath>Lib\</LibraryPath>
+      <PathEnvironmentVariable>PYTHONPATH</PathEnvironmentVariable>
+      <Architecture>X86</Architecture>
+    </Interpreter>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.Django.targets" />
   <!-- Specify pre- and post-build commands in the BeforeBuild and 

@@ -39,8 +39,14 @@
     <Compile Include="DjangoWebProject\settings.py" />
     <Compile Include="DjangoWebProject\urls.py" />
     <Compile Include="DjangoWebProject\wsgi.py" />
+    <Compile Include="tforce\admin.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="tforce\models.py" />
     <Compile Include="tforce\tests.py" />
+    <Compile Include="tforce\urls.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="tforce\views.py" />
     <Compile Include="tforce\__init__.py" />
   </ItemGroup>
@@ -56,6 +62,7 @@
     <Folder Include="DjangoWebProject\" />
     <Folder Include="tforce\" />
     <Folder Include="tforce\templates\" />
+    <Folder Include="tforce\templates\tforce\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="db.sqlite3" />
@@ -88,7 +95,7 @@
     <Content Include="app\templates\app\layout.html" />
     <Content Include="app\templates\app\login.html" />
     <Content Include="app\templates\app\loginpartial.html" />
-    <Content Include="tforce\templates\index.html" />
+    <Content Include="tforce\templates\tforce\index.html" />
     <Content Include="web.config" />
     <Content Include="web.debug.config" />
   </ItemGroup>

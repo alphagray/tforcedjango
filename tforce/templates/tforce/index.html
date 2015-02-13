@@ -1,17 +1,8 @@
-<html>
-    <head>
-        <title></title>
-    </head>
+{% extends "app/layout.html" %}
 
-    <body>
-        {% if latest_poll_list %}
-            <ul>
-                {% for poll in latest_poll_list %}
-                    <li> <a href="{% url 'tforce:detail' poll.id %}">{{ poll.question }}</a></li>
-                {% endfor %}
-            </ul>
-        {% else %}
-            <p> No pulls were found </p>
-        {% endif %}
-    </body>
-</html>
+{% block content %}
+<div data-partial="initial" class="partial">
+  <div class="partial-title">Default Title</div>
+  <div class="partial-content">Default Content</div>
+</div>
+{% endblock %}

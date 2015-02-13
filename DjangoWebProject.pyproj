@@ -95,7 +95,12 @@
     <Content Include="app\templates\app\layout.html" />
     <Content Include="app\templates\app\login.html" />
     <Content Include="app\templates\app\loginpartial.html" />
+    <Content Include="tforce\templates\tforce\about.html" />
+    <Content Include="tforce\templates\tforce\contact.html" />
     <Content Include="tforce\templates\tforce\index.html" />
+    <Content Include="tforce\templates\tforce\layout.html" />
+    <Content Include="tforce\templates\tforce\login.html" />
+    <Content Include="tforce\templates\tforce\loginpartial.html" />
     <Content Include="web.config" />
     <Content Include="web.debug.config" />
   </ItemGroup>

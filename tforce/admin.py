@@ -1,10 +1,12 @@
 from django.contrib import admin
-from tforce.models import Choice, Poll
+from django.contrib.auth.models import User
+import tforce.models as tf 
+
 
 class ChoiceInline(admin.TabularInline):
-    model = Choice
+    model = tf.Choice
     extra = 3
-
+    
 class PollAdmin(admin.ModelAdmin):
     fieldsets = [
         (None,               {'fields': ['question']}),
@@ -16,4 +18,16 @@ class PollAdmin(admin.ModelAdmin):
     search_fields = ['question']
     date_hierarchy = 'pub_date'
 
-admin.site.register(Poll, PollAdmin)
+class TForceUserInline(admin.StackedInline):
+    model = tf.TForceUser
+
+class UserAdmin(admin.ModelAdmin):
+    inlines = [TForceUserInline]
+
+admin.site.unregister(User)
+admin.site.register(User, UserAdmin)
+admin.site.register(tf.Poll, PollAdmin)
+admin.site.register(tf.Channel)
+admin.site.register(tf.Show)
+admin.site.register(tf.Episode)
+admin.site.register(tf.Post)

@@ -1,8 +1,46 @@
 from django.db import models
+from django.db.models import Q
 from django.contrib.auth.models import User
 
 # Create your models here.
 
+class TForceUser(models.Model):
+    user = models.OneToOneField(User) #ForeignKey(User)
+
+    def __unicode__(self):
+        return self.user.username
+
+
+
+class Channel(models.Model):
+    name = models.CharField(max_length=240)
+    members = models.ManyToManyField(TForceUser, related_name="channels", limit_choices_to=Q(user__is_staff=2))
+    def __unicode__(self):
+        return self.name
+
+class Show(models.Model):
+    title = models.CharField(max_length=240)
+    description = models.TextField()
+    feed_url = models.URLField()
+    artwork = models.ImageField()
+    members = models.ManyToManyField(TForceUser, related_name="shows_featured_in", limit_choices_to=Q(user__is_staff=2))
+    def last_updated_on(self):
+        pass
+
+class Episode(models.Model):
+    STATUS_CHOICES = (
+        (1, 'Draft'),
+        (2, 'Published'),
+    )
+    
+    title = models.CharField(max_length=300)
+    number = models.IntegerField()
+    synopsis = models.TextField()
+    originalPublishDate = models.DateField()
+    status = models.IntegerField('status', choices=STATUS_CHOICES, default=1)
+    episode_url = models.URLField()
+    members = models.ManyToManyField(TForceUser, related_name="episodes_featured_in", limit_choices_to=Q(user__is_staff=2))
+    
 class Post(models.Model):
 
     STATUS_CHOICES = (
@@ -14,26 +52,15 @@ class Post(models.Model):
     body = models.TextField()
     status = models.IntegerField('status', choices=STATUS_CHOICES, 
                                  default=2)
+    channel = models.ForeignKey(Channel, related_name='posts')
 
+    def __unicode__(self):
+        return self.name
 
-class TforceUser(models.Model):
-
-    STATUS_CHOICES = (
-        (1, "Active"),
-        (2, "Inactive"),
-        (3, "Restricted")
-        (4, "Banned")
-    )
-
-    status = models.IntegerField('status', choices=STATUS_CHOICES, default=2)
-    user = models.ForeignKey(User, relatedName = "base_user")
-    # socialuser = models.ForeignKey(SocialUser, relatedName = "social_user")
 
 class Poll(models.Model):
     question = models.CharField(max_length=200)
     pub_date = models.DateTimeField('date published')
-
-
 
     def __unicode__(self):
         return self.question

@@ -1,21 +1,33 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
 class Post(models.Model):
 
     STATUS_CHOICES = (
-        (1, _('Draft')),
-        (2, _('Publics')),
+        (1, 'Draft'),
+        (2, 'Public'),
     )
 
     title = models.CharField(max_length=150)
     body = models.TextField()
-    status = models.IntegerField(_('status'), choices=STATUS_CHOICES, 
+    status = models.IntegerField('status', choices=STATUS_CHOICES, 
                                  default=2)
 
-class ExtendedPost(models.Model, Post):
-    pass
+
+class TforceUser(models.Model):
+
+    STATUS_CHOICES = (
+        (1, "Active"),
+        (2, "Inactive"),
+        (3, "Restricted")
+        (4, "Banned")
+    )
+
+    status = models.IntegerField('status', choices=STATUS_CHOICES, default=2)
+    user = models.ForeignKey(User, relatedName = "base_user")
+    # socialuser = models.ForeignKey(SocialUser, relatedName = "social_user")
 
 class Poll(models.Model):
     question = models.CharField(max_length=200)

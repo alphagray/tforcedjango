@@ -14,7 +14,7 @@ class TForceUser(models.Model):
 
 class Channel(models.Model):
     name = models.CharField(max_length=240)
-    members = models.ManyToManyField(TForceUser, related_name="channels", limit_choices_to=Q(user__is_staff=2))
+    members = models.ManyToManyField(TForceUser, related_name="channels", limit_choices_to=Q(user__is_staff=True))
     def __unicode__(self):
         return self.name
 
@@ -23,7 +23,7 @@ class Show(models.Model):
     description = models.TextField()
     feed_url = models.URLField()
     artwork = models.ImageField()
-    members = models.ManyToManyField(TForceUser, related_name="shows_featured_in", limit_choices_to=Q(user__is_staff=2))
+    members = models.ManyToManyField(TForceUser, related_name="shows_featured_in", limit_choices_to=Q(user__is_staff=True))
     def last_updated_on(self):
         pass
 
@@ -39,7 +39,7 @@ class Episode(models.Model):
     originalPublishDate = models.DateField()
     status = models.IntegerField('status', choices=STATUS_CHOICES, default=1)
     episode_url = models.URLField()
-    members = models.ManyToManyField(TForceUser, related_name="episodes_featured_in", limit_choices_to=Q(user__is_staff=2))
+    members = models.ManyToManyField(TForceUser, related_name="episodes_featured_in", limit_choices_to=Q(user__is_staff=True))
     
 class Post(models.Model):
 

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -17,7 +17,7 @@
   <header class="tfn-header">
     <!-- Navigation for podcasts and sections -->
     <div data-selection="proper" class="logo proper">Trinity Force Proper</div>
-    <div data-selection="lcs" class="logo lcs">LCS Rundown</div>
+    <div data-selection="rundown" class="logo rundown">LCS Rundown</div>
     <div data-selection="ozlol" class="logo ozlol">Ozlol</div>
     <!-- Main Home button -->
     <div data-selection="home" class="logo home">Home</div>
@@ -27,6 +27,7 @@
   </header>
   <div id="tfn-app">
     {% block content %}{% endblock %}
+    
   </div>
   <footer>
     <p>&copy; {{ year }} - Trinity Force Network</p>

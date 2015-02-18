@@ -141,6 +141,7 @@ INSTALLED_APPS = (
     'app',
     'taggit',
     'tforce',
+    'podcasting',
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
 )

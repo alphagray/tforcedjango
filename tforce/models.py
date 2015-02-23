@@ -63,7 +63,7 @@ class Post(models.Model):
 
     def __unicode__(self):
         return self.name
-
+     
 
 class Poll(models.Model):
     question = models.CharField(max_length=200)

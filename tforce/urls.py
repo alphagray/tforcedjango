@@ -1,5 +1,6 @@
 from django.conf.urls import patterns, url
 from django.views.generic import DetailView, ListView
+from app import views
 from tforce.models import Poll
 
 urlpatterns = patterns('',
@@ -20,4 +21,5 @@ urlpatterns = patterns('',
             template_name='tforce/results.html'),
         name='results'),
     url(r'^(?P<poll_id>\d+)/vote/$', 'tforce.views.vote', name='vote'),
+    url(r'^ozlol/', views.ozlol, name="ozlol")
 )

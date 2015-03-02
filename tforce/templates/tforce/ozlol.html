@@ -1,0 +1,26 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+<div data-partial="home" class="partial">
+  <div class="main__posts">
+    <div class="post template">
+      <div class="post-header">
+        <div class="post-image"></div>
+        <span class="post-show"></span> - <span class="post-title"></span>
+        <span class="hosted-by"></span>
+      </div>
+      <div class="post-video"></div>
+      <div class="post-content"></div>
+      <div class="post-footer">
+        <div class="post-tags"></div>
+        <div class="post-sharing">
+          <a class="post-share facebook" href="#">Facebook</a>
+          <a class="post-share twitter" href="#">Twitter</a>
+          <a class="post-share reddit" href="#">Reddit</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

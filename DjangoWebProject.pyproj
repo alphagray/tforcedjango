@@ -101,6 +101,7 @@
     <Content Include="tforce\templates\tforce\layout.html" />
     <Content Include="tforce\templates\tforce\login.html" />
     <Content Include="tforce\templates\tforce\loginpartial.html" />
+    <Content Include="tforce\templates\tforce\ozlol.html" />
     <Content Include="web.config" />
     <Content Include="web.debug.config" />
   </ItemGroup>

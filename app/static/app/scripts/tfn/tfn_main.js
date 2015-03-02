@@ -86,6 +86,10 @@ tfn.home = function(){
       target_posts = fake_proper_posts.concat(fake_rundown_posts);
       fill_in_posts(target_posts);
       break;
+    case "home":
+      target_posts = fake_proper_posts.concat(fake_rundown_posts);
+      fill_in_posts(target_posts);
+      break;
     case "rundown":
       target_posts = fake_rundown_posts;
       fill_in_posts(target_posts);

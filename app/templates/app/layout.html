@@ -27,11 +27,29 @@
       </div>
       <div class="tab account">
         <i class="icon user"></i>
-      </div> 
+      </div>
+      <div class="header-dropdown">
+      <div class="dropdown-filter">
+        <div class="filter" data-filter="podcasts">podcasts</div>
+        <div class="filter" data-filter="videos">videos</div>
+        <div class="filter" data-filter="community">community</div>
+      </div>
+      <div class="dropdown-content">
+        <div class="dropdown-channel" data-channel="proper">
+          <!-- <img src="images/proper-logo.png"> -->
+        </div>
+        <div class="dropdown-channel" data-channel="ozlol"></div>
+        <div class="dropdown-channel" data-channel="lcs"></div>
+        <div class="dropdown-channel" data-channel="wards"></div>
+      </div>
+    </div> 
     </div>
   </header>
   <div id="tfn-app">
     {% block content %}{% endblock %}
+    <div id="sidebar">
+      content!
+    </div>
   </div>
   <footer>
     <p>&copy; {{ year }} - Trinity Force Network</p>

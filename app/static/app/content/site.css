@@ -1,12 +1,20 @@
-html, body{
-  background-color: #efefef;
-}
-
 @font-face {
   font-family: 'IcoMoon-Free';
   src: url('../fonts/IcoMoon-Free.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
+}
+
+@font-face {
+  font-family: 'nooa demi';
+  src: url('../fonts/NOOA-DEMI-SERIF.tff') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+html, body{
+  background-color: #efefef;'
+  font-family: 'nooa demi';
 }
 
 *{
@@ -20,6 +28,7 @@ html, body{
 
 .header-tabs{
   width: 960px;
+  position: relative;
   margin: 0 auto;
 }
 
@@ -48,9 +57,19 @@ html, body{
   text-indent: -9999px;
 }
 
+.tab.search{
+  border-left: 1px solid #efefef;
+  border-right: 1px solid #efefef;
+  margin-left: 15px;
+}
+
+.tab.search:hover{
+  background-color: white;
+}
+
 .tab.account{
-  margin-left: 5px;
-  padding-left: 20px;
+  margin-left: 0px;
+  padding-left: 26px;
   padding-right: 20px;
 }
 
@@ -59,22 +78,77 @@ html, body{
   cursor: pointer;
 }
 
+.header-tabs:hover .header-dropdown{
+  height: 150px;
+}
+
 .template, .hidden{
   display: none;
 }
 
-.partial{
+#tfn-app{
+  background-color: white;
+}
+#tfn-app{
+  margin: 10px auto;
   width: 960px;
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.partial{
+  width: 66%;
+  background-color: white;
+  float: left;
   margin: 0 auto;
+}
+
+#sidebar{
+  width: 33%;
+  float: left;
+}
+
+.header-dropdown{
+  position: absolute;
+  background-color: #efefef;
+  /*height: 150px;*/
+  height: 0px;
+  width: 960px;
+  overflow: hidden;
+  margin: auto;
+  margin-top: 42px;
+}
+.header-dropdown:after{
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.dropdown-content{
+  float: right;
+}
+
+.dropdown-channel{
+  width: 175px;
+  height: 125px;
+  margin: 10px;
+  background-color: #333;
+  float: left;
+}
+
+.dropdown-filter{
+  float: left;
+}
+
+.filter{
+  text-transform: uppercase;
 }
 
 .post{
   margin-top: 10px;
   padding: 10px;
   font-size: 14px;
-  box-shadow: 0px 5px 5px -3px black;
-  border-radius: 2px;
-  background-color: white;
 }
 
 span.post.cloned{

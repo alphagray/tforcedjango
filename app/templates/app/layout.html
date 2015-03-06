@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TFN - [Template]</title>
     {% load staticfiles %}
-    <link rel="stylesheet" type="text/css" href="{% static 'app/content/normalize.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'app/content/site.css' %}" />
     <script src="{% static 'app/scripts/modernizr-2.6.2.js' %}"></script>
     <script src="{% static 'app/scripts/jquery-1.10.2.js' %}"></script>
@@ -36,7 +35,7 @@
       </div>
       <div class="dropdown-content">
         <div class="dropdown-channel" data-channel="proper">
-          <!-- <img src="images/proper-logo.png"> -->
+          <img src="{% static 'app/images' %}/proper-logo.png">
         </div>
         <div class="dropdown-channel" data-channel="ozlol"></div>
         <div class="dropdown-channel" data-channel="lcs"></div>

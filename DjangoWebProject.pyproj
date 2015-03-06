@@ -4,7 +4,7 @@
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <Name>DjangoWebProject</Name>
     <RootNamespace>DjangoWebProject</RootNamespace>
-    <InterpreterId>{ab0c86ff-2218-42e8-bfa4-622969422b5f}</InterpreterId>
+    <InterpreterId>{0c2dca26-6776-4e6e-b663-fef4e27285ee}</InterpreterId>
     <InterpreterVersion>2.7</InterpreterVersion>
   </PropertyGroup>
   <PropertyGroup>
@@ -95,7 +95,7 @@
   </ItemGroup>
   <ItemGroup>
     <Interpreter Include="tforce\">
-      <Id>{ab0c86ff-2218-42e8-bfa4-622969422b5f}</Id>
+      <Id>{0c2dca26-6776-4e6e-b663-fef4e27285ee}</Id>
       <BaseInterpreter>{2af0f10d-7135-4994-9156-5d01c9c11b7e}</BaseInterpreter>
       <Version>2.7</Version>
       <Description>tforce (Python 2.7)</Description>

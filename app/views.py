@@ -5,7 +5,6 @@ Definition of views.
 from django.shortcuts import render
 from django.http import HttpRequest
 from django.template import RequestContext
-from tforce import models as tfm
 from podcasting import models as podcasting
 from datetime import datetime
 
@@ -22,34 +21,6 @@ def home(request):
                 'year':datetime.now().year,
             })
     )
-
-def tforce(request):
-    assert isinstance(request, HttpRequest)
-    return render(
-        request,
-        'app/tforce.html',
-        context_instance=RequestContext(request, 
-            {
-                'title': 'Trinity Force Podcast',
-                'year': datetime.now().year,
-            })
-    )
-
-def ozlol(request):
-    try:
-        ozlolShow = tfm.ShowWrapper.objects.get(podcastShow__title="OzLol")
-        currentEpisode = ozlolShow.current_episode()
-    except:
-        currentEpisode = None
-    return render(
-        request,
-        'tforce/ozlol.html',
-        context_instance=RequestContext(request,
-                                        {
-                                            'title': 'OzLol Podcast',
-                                            'year': datetime.now().year,
-                                            'current_episode': currentEpisode 
-                                            }))
 
 def contact(request):
     """Renders the contact page."""

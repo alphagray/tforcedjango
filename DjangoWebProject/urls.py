@@ -15,7 +15,6 @@ admin.autodiscover()
 
 
 urlpatterns = patterns('',
-    url(r'^', include('tforce.urls', namespace = "polls")),
 
     # Examples:
     url(r'^$', 'app.views.home', name='home'),

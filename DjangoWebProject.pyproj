@@ -39,19 +39,6 @@
     <Compile Include="DjangoWebProject\settings.py" />
     <Compile Include="DjangoWebProject\urls.py" />
     <Compile Include="DjangoWebProject\wsgi.py" />
-    <Compile Include="tforce\admin.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="tforce\models.py" />
-    <Compile Include="tforce\tests.py" />
-    <Compile Include="tforce\urls.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="tforce\utils.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="tforce\views.py" />
-    <Compile Include="tforce\__init__.py" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="app\" />
@@ -64,9 +51,6 @@
     <Folder Include="app\templates\" />
     <Folder Include="app\templates\app\" />
     <Folder Include="DjangoWebProject\" />
-    <Folder Include="tforce\" />
-    <Folder Include="tforce\templates\" />
-    <Folder Include="tforce\templates\tforce\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\static\app\images\betasoftware.jpg" />
@@ -101,13 +85,6 @@
     <Content Include="app\templates\app\layout.html" />
     <Content Include="app\templates\app\login.html" />
     <Content Include="app\templates\app\loginpartial.html" />
-    <Content Include="tforce\templates\tforce\about.html" />
-    <Content Include="tforce\templates\tforce\contact.html" />
-    <Content Include="tforce\templates\tforce\index.html" />
-    <Content Include="tforce\templates\tforce\layout.html" />
-    <Content Include="tforce\templates\tforce\login.html" />
-    <Content Include="tforce\templates\tforce\loginpartial.html" />
-    <Content Include="tforce\templates\tforce\ozlol.html" />
     <Content Include="web.config" />
     <Content Include="web.debug.config" />
   </ItemGroup>

@@ -140,7 +140,6 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'app',
     'taggit',
-    'tforce',
     'podcasting',
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',

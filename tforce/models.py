@@ -1,6 +1,7 @@
 from django.db import models
 from django.db.models import Q
 from django.contrib.auth.models import User
+from django.contrib.contenttypes.models import ContentType
 from podcasting import models as podcasts
 
 # Create your models here.
@@ -16,6 +17,12 @@ class TForceUser(models.Model):
 class Channel(models.Model):
     name = models.CharField(max_length=240)
     members = models.ManyToManyField(TForceUser, related_name="channels", limit_choices_to=Q(user__is_staff=True))
+    shows = Channel.objects.select_related('Show').all()
+    blogs = Channel.objects.select_related('Blog').all()
+
+    def get_channel_content_all(self):
+        return shows + blogs
+
     def __unicode__(self):
         return self.name
 
@@ -28,7 +35,7 @@ class ShowWrapper(models.Model):
         return self.podcastShow.title
 
     def last_updated_on(self):
-        pass
+        return self.podcastShow.updated
 
 class EpisodeWrapper(models.Model):
     '''STATUS_CHOICES = (

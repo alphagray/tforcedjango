@@ -47,6 +47,9 @@
     <Compile Include="tforce\urls.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="tforce\utils.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="tforce\views.py" />
     <Compile Include="tforce\__init__.py" />
   </ItemGroup>

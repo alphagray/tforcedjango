@@ -19,6 +19,8 @@
     overflow: hidden
     margin: auto
     margin-top: 42px
+    &.expanded
+      height: 150px
     &:after
       content: ""
       display: table
@@ -30,21 +32,18 @@
       height: 125px
       margin: 10px
       float: left
-      background-color: #3f3f3f
-      box-shadow: inset 0px 0px 13px -6px #333
+      background-image: url('../images/b-splash.jpg')
+      box-shadow: inset 0px 0px 250px 100px #6f6f6f
+      -webkit-transition: box-shadow 0.5s ease
       img
         width: 150px
       &:hover
         cursor: pointer
-        background-image: url('../images/b-splash.jpg')
-        box-shadow: inset 0px 0px 67px -6px black
+        box-shadow: inset 0px 0px 67px -6px #6f6f6f
     .dropdown-filter
       float: left
       .filter
         text-transform: uppercase
-  &:hover 
-    .header-dropdown
-      height: 150px
     
 .tab
   float: left
@@ -70,7 +69,7 @@
     margin-left: 0px
     padding-left: 26px
     padding-right: 20px
-  &:hover
+  &:hover, &.selected
     background-color: #efefef
     cursor: pointer  
 

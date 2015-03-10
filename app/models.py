@@ -167,7 +167,7 @@ class Show(Content):
     A podcast show, which has several episodes
     """
     channel = models.ManyToManyField(Channel)
-    
+
     EXPLICIT_CHOICES = (
         (1, _("yes")),
         (2, _("no")),
@@ -336,13 +336,13 @@ class Show(Content):
     @property
     def current_episode(self):
         try:
-            return self.episode_set.published().order_by("-published")[0]
+            return self.episodes.published().order_by("-published")[0]
         except IndexError:
             return None
 
 
 class Episode(Content):
-    shows = models.ManyToManyField(Show, related_name=_("shows"))
+    shows = models.ManyToManyField(Show, related_name=_("episodes"))
     objects = PassThroughManager.for_queryset_class(mngr.EpisodeManager)()
     tags = TaggableManager(blank = True)
     SIXTY_CHOICES = tuple((x, x) for x in range(60))

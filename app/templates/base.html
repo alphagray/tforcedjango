@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+{% load cms_tags sekizaki_tags %}
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    {% render_block "css" %}
+</head>
+<body>
+    {% placeholder base_content %}
+    {% block base_content %} {% endblock %}
+    {% render_block "js" %}
+</body>
+</html>

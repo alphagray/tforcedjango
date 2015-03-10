@@ -25,7 +25,7 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': path.join(PROJECT_ROOT, 'db.sqlite3'),
+        'NAME': path.join(PROJECT_ROOT, 'db2.sqlite3'),
         'USER': '',
         'PASSWORD': '',
         'HOST': '',
@@ -139,7 +139,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'app',
-    'podcasting',
+    #'podcasting',
     'taggit',
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',

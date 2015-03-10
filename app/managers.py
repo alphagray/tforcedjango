@@ -22,7 +22,6 @@ class EpisodeManager(QuerySet):
 
 
 
-
     pass
 
 class ShowManager(QuerySet):
@@ -40,4 +39,7 @@ class ContentManager(QuerySet):
     """ returns all content for a channel, regardless of its model type 
     by serializing the data a common object. Uses a few fields for managing
     internal concepts """ 
+
+
+
     pass

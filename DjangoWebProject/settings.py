@@ -113,7 +113,15 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     # Uncomment the next line for simple clickjacking protection:
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'social.apps.django_app.middleware.SocialAuthExceptionMiddleware',
+)
 
+AUTHENTICATION_BACKENDS = (
+    'social.backends.open_id.OpenIdAuth',
+    'social.backends.twitter.TwitterOAuth',
+    'social.backends.twitter.RedditOAuth2',
+    'social.backends.facebook.FacebookOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
 )
 
 ROOT_URLCONF = 'DjangoWebProject.urls'
@@ -131,6 +139,11 @@ TEMPLATE_DIRS = (
     # Don't forget to use absolute paths, not relative paths.
 )
 
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'social.apps.django_app.context_processors.backends',
+    'social.apps.django_app.context_processors.login_redirect',
+)
+
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -144,6 +157,8 @@ INSTALLED_APPS = (
     'taggit',
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
+    # Socail auth via python-social-auth
+    'social.apps.django_app.default',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -177,3 +192,19 @@ LOGGING = {
 
 # Specify the default test runner.
 TEST_RUNNER = 'django.test.runner.DiscoverRunner'
+
+
+#Specify custom SOCIAL backend settings
+
+# facebook
+SOCIAL_AUTH_FACEBOOK_KEY = '1430068027287048'
+SOCIAL_AUTH_FACEBOOK_SECRET = 'ad0badfe4263b3711484eb2eaedc35d8'
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
+
+# twitter
+SOCIAL_AUTH_TWITTER_KEY = '1zR5mEv245Mg0iXtUsC6mtYcf'
+SOCIAL_AUTH_TWITTER_SECRET = 'HPCLyDZ7XKsMaku79UV1BSDGguxTQjGe3EsU2slmGHHIhhJUdc'
+
+# reddit
+SOCIAL_AUTH_REDDIT_KEY = 'Fg3n-XB-pdfk3g'
+SOCIAL_AUTH_REDDIT_SECRET = 'k96CMb37eY6lEARPi1eIO8cz4D0'

@@ -26,6 +26,9 @@
       </div>
       <div class="tab account">
         <i class="icon user"></i>
+        {% if user.is_authenticated %}
+            <span style="margin-left: 15px;">{{ user.username }}</span>
+        {% endif %}
       </div>
       <div class="header-dropdown">
       <div class="dropdown-filter">

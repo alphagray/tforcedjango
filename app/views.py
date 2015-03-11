@@ -36,18 +36,19 @@ def context(**extra):
         }, **extra)
 
 
+@render_to('auth.html')
+def authtest(request, backend):
+    """ Test authorize view """
+    if not request.user.is_authenticated():
+        return context()
+    return redirect('done')
 
-@render_to('home.html')
-def home(request):
-    """Home view, display login mechanism"""
-    if request.user.is_authenticated():
-        return redirect('done')
-    return context()
+
 
 
 @login_required
-@render_to('home.html')
-def done(request):
+@render_to('authtest.html')
+def done(request, backend):
     """Login complete view, displays user data"""
     return context()
 

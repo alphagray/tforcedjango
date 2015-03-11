@@ -1,7 +1,7 @@
 from django.shortcuts import redirect
 from app.models import Profile
 from social.pipeline.partial import partial
-
+from django.contrib.auth import login
 
 @partial
 def require_email(strategy, details, user=None, is_new=False, *args, **kwargs):
@@ -19,8 +19,8 @@ def require_email(strategy, details, user=None, is_new=False, *args, **kwargs):
 def generate_profile(strategy, details, user, is_new=True, *args, **kwargs):
     """ generate a Trinity Force Network profile from the social information, if available """
     if not is_new:
-        return
-    elif is_new and not user.profile:
+        return redirect('home')
+    elif is_new and not user.user_profile:
         profile = Profile.create(user.username)
         for name, value in details.items():
             if not hasattr(profile, name):

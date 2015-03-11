@@ -47,4 +47,5 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     # social auth urls
     url(r'', include('social.apps.django_app.urls', namespace='social')),
+    url(r'', include('app.urls', namespace='app')),
 )

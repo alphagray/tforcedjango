@@ -10,6 +10,7 @@ TEMPLATE_DEBUG = DEBUG
 
 ALLOWED_HOSTS = (
     'localhost',
+    'myapp.com'
 )
 
 ADMINS = (
@@ -25,7 +26,7 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': path.join(PROJECT_ROOT, 'db2.sqlite3'),
+        'NAME': path.join(PROJECT_ROOT, 'db3.sqlite3'),
         'USER': '',
         'PASSWORD': '',
         'HOST': '',
@@ -119,7 +120,7 @@ MIDDLEWARE_CLASSES = (
 AUTHENTICATION_BACKENDS = (
     'social.backends.open_id.OpenIdAuth',
     'social.backends.twitter.TwitterOAuth',
-    'social.backends.twitter.RedditOAuth2',
+    'social.backends.reddit.RedditOAuth2',
     'social.backends.facebook.FacebookOAuth2',
     'django.contrib.auth.backends.ModelBackend',
 )
@@ -207,15 +208,13 @@ SOCIAL_AUTH_PIPELINE = (
     'social.pipeline.social_auth.auth_allowed',
     'social.pipeline.social_auth.social_user',
     'social.pipeline.user.get_username',
-    'app.pipeline.require_email',
-    'social.pipeline.mail.mail_validation',
     'social.pipeline.user.create_user',
     'social.pipeline.social_auth.associate_user',
     'social.pipeline.debug.debug',
     'social.pipeline.social_auth.load_extra_data',
     'social.pipeline.user.user_details',
     'app.pipeline.generate_profile',
-    'social.pipeline.debug.debug'
+#    'social.pipeline.debug.debug'
 )
 
 

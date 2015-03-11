@@ -6,6 +6,7 @@
     <RootNamespace>DjangoWebProject</RootNamespace>
     <InterpreterId>{0c2dca26-6776-4e6e-b663-fef4e27285ee}</InterpreterId>
     <InterpreterVersion>2.7</InterpreterVersion>
+    <WebBrowserPort>63208</WebBrowserPort>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -40,7 +41,13 @@
     <Compile Include="app\pipeline.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="app\templatetags\backend_utils.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="app\tests.py" />
+    <Compile Include="app\urls.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="app\utils\twitter.py">
       <SubType>Code</SubType>
     </Compile>
@@ -82,6 +89,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="app\" />
+    <Folder Include="app\templatetags\" />
     <Folder Include="app\static\" />
     <Folder Include="app\static\app\" />
     <Folder Include="app\static\app\content\" />
@@ -125,8 +133,8 @@
     <Content Include="app\static\app\images\proper-logo.png" />
     <Content Include="app\static\app\scripts\tfn\login_by_sean.js" />
     <Content Include="app\static\app\scripts\tfn\tfn_main.js" />
-    <Content Include="db.sqlite3" />
-    <Content Include="db2.sqlite3" />
+    <Content Include="app\templates\app\auth.html" />
+    <Content Include="db3.sqlite3" />
     <Content Include="django-ajax\.gitignore" />
     <Content Include="django-ajax\.git\config" />
     <Content Include="django-ajax\.git\description" />

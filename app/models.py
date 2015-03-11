@@ -124,7 +124,7 @@ except ImportError:
 # Create your models here.
 
 class Profile(models.Model):
-    user = models.ForeignKey(User)
+    user = models.OneToOneField(User, to_field="user_profile")
     
     @classmethod
     def create(cls, username):
@@ -143,7 +143,7 @@ class Profile(models.Model):
 
 #Abstract base class for all content that goes into a channel. 
 class Content(models.Model):
-    title = models.CharField(max_length=255, primary_key=True)
+    title = models.CharField(max_length=255)
     members = models.ManyToManyField(Profile, limit_choices_to={"user__is_staff":True}, null=True, default=None)
     content = PassThroughManager.for_queryset_class(mngr.ContentManager)()
     class Meta:
@@ -151,7 +151,7 @@ class Content(models.Model):
 
 class Channel(models.Model):
 
-    title = models.CharField(max_length=50, primary_key=True)
+    title = models.CharField(max_length=50)
     members = models.ManyToManyField(Profile, limit_choices_to={"user__is_staff":True}, blank=False, null=True, default=None)
     tags = TaggableManager(blank=True)
     
@@ -538,7 +538,7 @@ class Episode(Content):
         return False
 
 class Blog(Content):
-    #title = models.CharField(max_length = "200", primary_key=True)
+    #title = models.CharField(max_length = "200", unique=True)
     #members = models.ForeignKey(User, limit_choices_to={"is_staff":True})
     
     body = models.TextField()

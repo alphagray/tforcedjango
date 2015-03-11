@@ -10,6 +10,7 @@ TEMPLATE_DEBUG = DEBUG
 
 ALLOWED_HOSTS = (
     'localhost',
+    'myapp.com'
 )
 
 ADMINS = (
@@ -25,7 +26,7 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': path.join(PROJECT_ROOT, 'db2.sqlite3'),
+        'NAME': path.join(PROJECT_ROOT, 'db3.sqlite3'),
         'USER': '',
         'PASSWORD': '',
         'HOST': '',
@@ -113,7 +114,15 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     # Uncomment the next line for simple clickjacking protection:
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'social.apps.django_app.middleware.SocialAuthExceptionMiddleware',
+)
 
+AUTHENTICATION_BACKENDS = (
+    'social.backends.open_id.OpenIdAuth',
+    'social.backends.twitter.TwitterOAuth',
+    'social.backends.reddit.RedditOAuth2',
+    'social.backends.facebook.FacebookOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
 )
 
 ROOT_URLCONF = 'DjangoWebProject.urls'
@@ -131,6 +140,12 @@ TEMPLATE_DIRS = (
     # Don't forget to use absolute paths, not relative paths.
 )
 
+TEMPLATE_CONTEXT_PROCESSORS = (   
+    'django.contrib.auth.context_processors.auth',
+    'social.apps.django_app.context_processors.backends',
+    'social.apps.django_app.context_processors.login_redirect',
+)
+
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -144,6 +159,8 @@ INSTALLED_APPS = (
     'taggit',
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
+    # Socail auth via python-social-auth
+    'social.apps.django_app.default',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -177,3 +194,39 @@ LOGGING = {
 
 # Specify the default test runner.
 TEST_RUNNER = 'django.test.runner.DiscoverRunner'
+
+
+#Specify custom SOCIAL backend settings
+
+SOCIAL_AUTH_STRATEGY = 'social.strategies.django_strategy.DjangoStrategy'
+SOCIAL_AUTH_STORAGE = 'social.apps.django_app.default.models.DjangoStorage'
+
+
+SOCIAL_AUTH_PIPELINE = (
+    'social.pipeline.social_auth.social_details',
+    'social.pipeline.social_auth.social_uid',
+    'social.pipeline.social_auth.auth_allowed',
+    'social.pipeline.social_auth.social_user',
+    'social.pipeline.user.get_username',
+    'social.pipeline.user.create_user',
+    'social.pipeline.social_auth.associate_user',
+    'social.pipeline.debug.debug',
+    'social.pipeline.social_auth.load_extra_data',
+    'social.pipeline.user.user_details',
+    'app.pipeline.generate_profile',
+#    'social.pipeline.debug.debug'
+)
+
+
+# facebook
+SOCIAL_AUTH_FACEBOOK_KEY = '1430068027287048'
+SOCIAL_AUTH_FACEBOOK_SECRET = 'ad0badfe4263b3711484eb2eaedc35d8'
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
+
+# twitter
+SOCIAL_AUTH_TWITTER_KEY = '1zR5mEv245Mg0iXtUsC6mtYcf'
+SOCIAL_AUTH_TWITTER_SECRET = 'HPCLyDZ7XKsMaku79UV1BSDGguxTQjGe3EsU2slmGHHIhhJUdc'
+
+# reddit
+SOCIAL_AUTH_REDDIT_KEY = 'Fg3n-XB-pdfk3g'
+SOCIAL_AUTH_REDDIT_SECRET = 'k96CMb37eY6lEARPi1eIO8cz4D0'

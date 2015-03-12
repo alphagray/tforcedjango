@@ -175,9 +175,7 @@ class Channel(models.Model):
     @property
     def episodes(self):
         from django.db.models import Q
-        raw_eps = self.content_set.exclude(episode__exact=None)
-        qss = QuerySetSequence(Episode.objects.filter(Q(shows__in=list(self.shows))|Q(channels__in=[self]s)), raw_eps).distinct()
-        return raw_eps
+        return Episode.objects.filter(Q(content_ptr_channel__in=[self])|Q(shows__in=list(channel.shows)))
     
     @property
     def latest_published(self):

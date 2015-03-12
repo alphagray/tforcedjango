@@ -8,6 +8,7 @@ from django.core.exceptions import ValidationError
 from model_utils.managers import PassThroughManager
 from autoslug import AutoSlugField
 from app.utils.twitter import can_tweet
+from app.utils.querysetsequence import QuerySetSequence
 
 def get_show_upload_folder(instance, pathname):
     "A standardized pathname for uploaded files and images."
@@ -124,7 +125,7 @@ except ImportError:
 # Create your models here.
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, to_field="user_profile")
+    user = models.OneToOneField(User)
     
     @classmethod
     def create(cls, username):
@@ -143,20 +144,59 @@ class Profile(models.Model):
 
 #Abstract base class for all content that goes into a channel. 
 class Content(models.Model):
-    title = models.CharField(max_length=255)
+    from model_utils import managers as mum
+    title = LowerCaseCharField(max_length=255, unique=True, null=False, blank=False)
     members = models.ManyToManyField(Profile, limit_choices_to={"user__is_staff":True}, null=True, default=None)
+    created = models.DateTimeField(_("created"), auto_now_add=True, editable=False)
+    updated = models.DateTimeField(_("updated"), auto_now=True, editable=False)
+    published = models.DateTimeField(_("published"), null=True, blank=True, editable=False)
     content = PassThroughManager.for_queryset_class(mngr.ContentManager)()
-    class Meta:
-        abstract = True
+    channel = models.ManyToManyField('Channel', null=True, default=None)
+
+    @property
+    def channels(self):
+        if(type(self) is Content):
+            return channel
+        else:
+            return super(self.__class__, self).channel
+
 
 class Channel(models.Model):
 
-    title = models.CharField(max_length=50)
+    title = LowerCaseCharField(max_length=50, unique=True, null=False, blank=False)
     members = models.ManyToManyField(Profile, limit_choices_to={"user__is_staff":True}, blank=False, null=True, default=None)
     tags = TaggableManager(blank=True)
+    objects = models.Manager()
     
-    def clean(self): 
-        self.title = self.name
+    @property
+    def shows(self):
+        return self.content_set.exclude(show__exact=None)
+
+    @property
+    def episodes(self):
+        from django.db.models import Q
+        raw_eps = self.content_set.exclude(episode__exact=None)
+        qss = QuerySetSequence(Episode.objects.filter(Q(shows__in=list(self.shows))|Q(channels__in=[self]s)), raw_eps).distinct()
+        return raw_eps
+    
+    @property
+    def latest_published(self):
+        content = None
+        for item in Content.content.filter(pk=self.id).allcontent():
+            if not isinstance(item, Content):
+                continue
+            if not content and item.published:
+                content = item
+            elif item.published > content.published:
+                content = item
+            else:
+                continue
+        if not content:
+            from django.core.exceptions import ObjectDoesNotExist
+            raise ObjectDoesNotExist
+        return content or "does not exist"
+
+                
 
     def __str__(self):
         return self.title
@@ -166,7 +206,7 @@ class Show(Content):
     """ 
     A podcast show, which has several episodes
     """
-    channel = models.ManyToManyField(Channel)
+    
 
     EXPLICIT_CHOICES = (
         (1, _("yes")),
@@ -176,9 +216,7 @@ class Show(Content):
     
     #uuid = UUIDField(_("id"), unique=True)
 
-    created = models.DateTimeField(_("created"), auto_now_add=True, editable=False)
-    updated = models.DateTimeField(_("updated"), auto_now=True, editable=False)
-    published = models.DateTimeField(_("published"), null=True, blank=True, editable=False)
+    
 
     #sites = models.ManyToManyField(Site, verbose_name=_('Sites'))
 
@@ -340,6 +378,11 @@ class Show(Content):
         except IndexError:
             return None
 
+    @classmethod
+    def create(cls, username, **kwargs):
+        show = cls(owner=User.objects.get_by_natural_key(username), **kwargs)
+        return show
+
 
 class Episode(Content):
     shows = models.ManyToManyField(Show, related_name=_("episodes"))
@@ -347,10 +390,6 @@ class Episode(Content):
     tags = TaggableManager(blank = True)
     SIXTY_CHOICES = tuple((x, x) for x in range(60))
     
-    created = models.DateTimeField(_("created"), auto_now_add=True, editable=False)
-    updated = models.DateTimeField(_("updated"), auto_now=True, editable=False)
-    published = models.DateTimeField(_("published"), null=True, blank=True, editable=False)
-
     enable_comments = models.BooleanField(default=True)
 
     slug = AutoSlugField(_("slug"), populate_from="title", unique="True")
@@ -466,8 +505,8 @@ class Episode(Content):
     sample = models.CharField(
         _("sample rate"), max_length=5, default="44.1",
         help_text=_("Measured in kilohertz (kHz), often 44.1."))
-    channel = models.CharField(
-        _("channel"), max_length=1, default=2,
+    sound_channel = models.CharField(
+        _("sound_channel"), max_length=1, default=2,
         help_text=_("Number of channels; 2 for stereo, 1 for mono."))
     duration = models.IntegerField(
         _("duration"), max_length=1,
@@ -483,7 +522,7 @@ class Episode(Content):
 
     def __str__(self):
         return "{0} - {1}".format(self.title, self.mime)
-
+    
     def get_absolute_url(self):
         return reverse("podcasting_episode_detail",
                        kwargs={"show_slug": self.shows.all()[0].slug, "slug": self.slug})
@@ -543,9 +582,7 @@ class Blog(Content):
     
     body = models.TextField()
     slug = AutoSlugField(_("slug"), populate_from="title", unique=True)
-    created = models.DateTimeField(auto_now_add=True, editable=False)
-    updated = models.DateTimeField(auto_now_add=True, editable=False)
-    published = models.DateTimeField(null=True, blank=True, editable=False)
+    
 
 
 class Post(Content):

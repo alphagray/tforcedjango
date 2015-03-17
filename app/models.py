@@ -125,8 +125,28 @@ except ImportError:
 # Create your models here.
 
 class Profile(models.Model):
-    user = models.OneToOneField(User)
+    USER_LEVEL_CHOICES = ((1, "Free"),(2, "Premium"),)
+    user = models.OneToOneField(User, null=False, blank=False)
+    userLevel = models.PositiveSmallIntegerField(verbose_name="User Level", choices=USER_LEVEL_CHOICES, default=1)
+    firstName = models.CharField(max_length=142, blank=False)
+    lastName = models.CharField(max_length=142, blank=False)
+
+    datejoined = models.DateField(verbose_name="Date Joined", auto_now_add=True, editable=False)
+    birthday = models.DateField(verbose_name="Birthday")
+    lanzobotpts = models.PositiveIntegerField(verbose_name="Lanzobot Points")
+    avatar_height = models.IntegerField()
+    avatar_width = models.IntegerField()
+    avatar = models.ImageField(width_field="avatar_width", height_field="avatar_height")
+    city = models.CharField(max_length=255)
+
+
+    @property
+    def fullname(self):
+        return self.firstName + " " + self.lastName
+
+
     
+
     @classmethod
     def create(cls, username):
         profile = cls(user=User.objects.get_by_natural_key(username))
@@ -153,12 +173,28 @@ class Content(models.Model):
     content = PassThroughManager.for_queryset_class(mngr.ContentManager)()
     channel = models.ManyToManyField('Channel', null=True, default=None)
 
+    STATUS_CHOICES = ((1, "Draft"), (2, "Published"),)
+
+    status = models.PositiveSmallIntegerField(choices=STATUS_CHOICES, default=1)
+
+    def publish(self):
+        self.status = 1
+        self.published = datetime.datetime.now
+        return self.save()
+
     @property
     def channels(self):
         if(type(self) is Content):
             return channel
         else:
             return super(self.__class__, self).channel
+
+class Community(models.Model):
+    users = models.ManyToManyField(Profile, related_name="communities")
+    content = models.ForeignKey(Content, related_name="communities")
+
+    def __str__(self):
+        return self.content.title + " Users"
 
 
 class Channel(models.Model):
@@ -180,7 +216,7 @@ class Channel(models.Model):
     @property
     def latest_published(self):
         content = None
-        for item in Content.content.filter(pk=self.id).allcontent():
+        for item in Content.content.filter(pk=self.id).published():
             if not isinstance(item, Content):
                 continue
             if not content and item.published:

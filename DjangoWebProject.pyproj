@@ -48,6 +48,9 @@
     <Compile Include="app\urls.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="app\utils\querysetsequence.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="app\utils\twitter.py">
       <SubType>Code</SubType>
     </Compile>
@@ -134,7 +137,7 @@
     <Content Include="app\static\app\scripts\tfn\login_by_sean.js" />
     <Content Include="app\static\app\scripts\tfn\tfn_main.js" />
     <Content Include="app\templates\app\auth.html" />
-    <Content Include="db3.sqlite3" />
+    <Content Include="db.sqlite3" />
     <Content Include="django-ajax\.gitignore" />
     <Content Include="django-ajax\.git\config" />
     <Content Include="django-ajax\.git\description" />

@@ -29,7 +29,7 @@ class ContentManager(DerivedQuerySet):
     by serializing the data a common object. Uses a few fields for managing
     internal concepts """ 
     
-    def get_query_set(self, *args, **kwargs):
+    def get_queryset(self, *args, **kwargs):
         return DerivedQuerySet(self.model, using=self._db).select_related(*self._get_derived_names())
 
 

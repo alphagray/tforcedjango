@@ -170,7 +170,7 @@ class Content(models.Model):
     created = models.DateTimeField(_("created"), auto_now_add=True, editable=False)
     updated = models.DateTimeField(_("updated"), auto_now=True, editable=False)
     published = models.DateTimeField(_("published"), null=True, blank=True, editable=False)
-    content = PassThroughManager.for_queryset_class(mngr.ContentManager)()
+    objects = PassThroughManager.for_queryset_class(mngr.ContentManager)()
     channel = models.ManyToManyField('Channel', null=True, default=None)
 
     STATUS_CHOICES = ((1, "Draft"), (2, "Published"),)
@@ -179,7 +179,7 @@ class Content(models.Model):
 
     def publish(self):
         self.status = 1
-        self.published = datetime.datetime.now
+        self.published = datetime.datetime.now().__str__()
         return self.save()
 
     @property
@@ -211,26 +211,24 @@ class Channel(models.Model):
     @property
     def episodes(self):
         from django.db.models import Q
-        return Episode.objects.filter(Q(content_ptr_channel__in=[self])|Q(shows__in=list(channel.shows)))
+        return Episode.objects.filter(Q(content_ptr_channel__in=[self])|Q(shows__in=list(self.shows)))
     
     @property
-    def latest_published(self):
-        content = None
-        for item in Content.content.filter(pk=self.id).published():
-            if not isinstance(item, Content):
-                continue
-            if not content and item.published:
-                content = item
-            elif item.published > content.published:
-                content = item
-            else:
-                continue
-        if not content:
-            from django.core.exceptions import ObjectDoesNotExist
-            raise ObjectDoesNotExist
-        return content or "does not exist"
+    def blogs(self):
+        return self.content_set.exclude(blog__exact=None)
 
-                
+    @property
+    def posts(self):
+        return Post.objects.filter(Q(content_ptr_channel__in=[self])|Q(blogs__in=list(self.blogs)))
+
+    @property
+    def latest_published(self):
+        return self.content_set.latest("published")
+
+    @property
+    def latest_episode(self):
+        return self.episodes.latest("published")
+
 
     def __str__(self):
         return self.title
@@ -616,13 +614,25 @@ class Blog(Content):
     
     body = models.TextField()
     slug = AutoSlugField(_("slug"), populate_from="title", unique=True)
+    pass
+#End blog
     
 
 
 class Post(Content):
-    blog = models.ManyToManyField(Blog)
+    blog = models.ManyToManyField(Blog, related_name="posts", null=False, blank=False)
     author = models.ForeignKey(Profile, related_name="author", limit_choices_to={'user__is_staff':True})
     tags = TaggableManager(blank = True)
+    slug = AutoSlugField(_("slug"), populate_from="title", unique=True)
+    
+    def save(self):
+        # here we're just appending the author's name to the title if this is the first time it's been saved.
+        if not self.created:
+            tempTitle = self.title + " - " + self.author.fullname
+            self.title = tempTitle
+        return super(Post, self).save()
+        
+
     pass
 #End post
 

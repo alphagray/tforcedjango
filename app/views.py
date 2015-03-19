@@ -7,7 +7,7 @@ import json
 from django.conf import settings
 from django.http import HttpResponse, HttpResponseBadRequest, HttpRequest
 from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required
+import django.contrib.auth.decorators
 from django.contrib.auth import logout as auth_logout, login
 
 from social.backends.oauth import BaseOAuth1, BaseOAuth2
@@ -31,7 +31,7 @@ def logout(request):
 def context(**extra):
     return dict({
             'facebook_id': getattr(settings, 'SOCIAL_AUTH_FACEBOOK_KEY', None),
-            'facebook_scope': ' '.join(FacebookOAuth2.DEFAULT_SCOPE),
+            'facebook_scope': ''.join(FacebookOAuth2.DEFAULT_SCOPE),
             'available_backends': load_backends(settings.AUTHENTICATION_BACKENDS)
         }, **extra)
 

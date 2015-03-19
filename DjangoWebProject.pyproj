@@ -41,6 +41,9 @@
     <Compile Include="app\pipeline.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="app\podcasts.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="app\templatetags\backend_utils.py">
       <SubType>Code</SubType>
     </Compile>

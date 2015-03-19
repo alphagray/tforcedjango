@@ -52,14 +52,10 @@ i.icon.user:after {
   clear: both; }
 
 .partial {
-  width: 66%;
+  width: 100%;
   background-color: white;
   float: left;
   margin: 0 auto; }
-
-#sidebar {
-  width: 33%;
-  float: left; }
 
 .post {
   margin-top: 10px;
@@ -105,9 +101,17 @@ span.post.cloned {
       height: 125px;
       margin: 10px;
       float: left;
-      background-image: url("../images/b-splash.jpg");
+      background-size: 100% 100%;
       box-shadow: inset 0px 0px 250px 100px #6f6f6f;
       -webkit-transition: box-shadow 0.5s ease; }
+      .header-tabs .header-dropdown .dropdown-channel[data-channel="proper"] {
+        background-image: url("../images/sejuani/sejuani_2.jpg"); }
+      .header-tabs .header-dropdown .dropdown-channel[data-channel="lcs"] {
+        background-image: url("../images/poppy/poppy_3.jpg"); }
+      .header-tabs .header-dropdown .dropdown-channel[data-channel="ozlol"] {
+        background-image: url("../images/renekton/renekton_3.jpg"); }
+      .header-tabs .header-dropdown .dropdown-channel[data-channel="wards"] {
+        background-image: url("../images/urf/urf_1.jpg"); }
       .header-tabs .header-dropdown .dropdown-channel img {
         width: 150px; }
       .header-tabs .header-dropdown .dropdown-channel:hover {

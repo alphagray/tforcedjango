@@ -40,18 +40,21 @@
         <div class="dropdown-channel" data-channel="proper">
           <img src="{% static 'app/images' %}/proper-logo.png">
         </div>
-        <div class="dropdown-channel" data-channel="ozlol"></div>
-        <div class="dropdown-channel" data-channel="lcs"></div>
-        <div class="dropdown-channel" data-channel="wards"></div>
+        <div class="dropdown-channel" data-channel="ozlol">
+          <img src="{% static 'app/images' %}/ozlol-logo.png">
+        </div>
+        <div class="dropdown-channel" data-channel="lcs">
+          <img src="{% static 'app/images' %}/lcs-logo.png">
+        </div>
+        <div class="dropdown-channel" data-channel="wards">
+
+        </div>
       </div>
     </div> 
     </div>
   </header>
   <div id="tfn-app">
     {% block content %}{% endblock %}
-    <div id="sidebar">
-      content!
-    </div>
   </div>
   <footer>
     <p>&copy; {{ year }} - Trinity Force Network</p>

@@ -1,0 +1,65 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+<style type="text/css">
+    ul.flyout {
+        list-style:none;
+        max-width: 1050px;
+    }
+    ul.flyout li:first-child {
+        float:left;
+        margin-left: 0px;
+    }
+    ul.flyout li {
+        float:left;
+        margin-left: 10px;
+        width: 150px;
+    }
+
+    ul.no-dot > li {
+        width: 100%;
+        float: left; 
+        clear: both;
+    }
+
+    ul.no-dot{
+        list-style: none;
+        float:left;
+        margin: 0;
+        padding: 0;
+        width: 1050px;
+    }
+</style>
+<div data-partial="profile" class="partial">
+    <div class="main__profile">
+        <div class="data">
+            <ul class="no-dot">
+                <li style="">
+                    <ul class="flyout" style="">
+                        <li>Full Name:</li>
+                        <li>{{ profile.fullname }}</li>
+                        <li>Profile Type:</li>
+                        <li>{{ profile.userLevel }}</li>
+                    </ul>
+                </li>
+                <li>
+                    <ul class="flyout">
+                        <li>Member Since:</li>
+                        <li>{{ profile.datejoined }}</li>
+                        <li>Birthday:</li>
+                        <li>{{ profile.birthday }}</li>
+                    </ul>
+                </li>
+                <li>
+                    <ul class="flyout">
+                        <li>City:</li>
+                        <li>{{ profile.city }}</li>
+                        <li>Lanzobot Points</li>
+                        <li>{{ profile.lanzobotpts }}</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

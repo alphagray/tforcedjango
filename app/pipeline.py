@@ -19,6 +19,7 @@ def require_email(strategy, details, user=None, is_new=False, *args, **kwargs):
 def generate_profile(strategy, details, user, is_new=True, *args, **kwargs):
     """ generate a Trinity Force Network profile from the social information, if available """
     if not is_new:
+        user.login()
         return redirect('home')
     elif is_new and not user.user_profile:
         profile = Profile.create(user.username)

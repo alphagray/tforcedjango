@@ -32,6 +32,7 @@
 </style>
 <div data-partial="profile" class="partial">
     <div class="main__profile">
+        {% if not incomplete: %}
         <div class="data">
             <ul class="no-dot">
                 <li style="">
@@ -60,6 +61,9 @@
                 </li>
             </ul>
         </div>
+        {% endif %}
+        {% if incomplete: %}
+        {% endif %}
     </div>
 </div>
 {% endblock %}

@@ -6,7 +6,7 @@ import json
 
 from django.conf import settings
 from django.http import HttpResponse, HttpResponseBadRequest, HttpRequest
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, render_to_response
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth import logout as auth_logout, login
 from django.contrib.auth.models import User
@@ -25,10 +25,7 @@ from django.template import RequestContext
 from datetime import datetime
 
 
-
-
-def profile(request, username):
-    if username is none:
-        username="sboyce"
-    p = Profile.objects.first(user_username=username)
-    return render(request,  'app/profile.html', profile=p)
+@login_required
+def profile(request, incomplete=False):
+    context = RequestContext(request, { 'request': request, 'user': request.user, 'incomplete': incomplete, 'profile': request.user.profile })
+    return render_to_response('app/profile.html', context_instance=context)

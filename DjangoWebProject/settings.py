@@ -198,6 +198,8 @@ TEST_RUNNER = 'django.test.runner.DiscoverRunner'
 
 #Specify custom SOCIAL backend settings
 
+LOGIN_REDIRECT_URL = '/'
+
 SOCIAL_AUTH_STRATEGY = 'social.strategies.django_strategy.DjangoStrategy'
 SOCIAL_AUTH_STORAGE = 'social.apps.django_app.default.models.DjangoStorage'
 
@@ -207,14 +209,13 @@ SOCIAL_AUTH_PIPELINE = (
     'social.pipeline.social_auth.social_uid',
     'social.pipeline.social_auth.auth_allowed',
     'social.pipeline.social_auth.social_user',
-    'social.pipeline.user.get_username',
+    'app.pipeline.get_username',
     'social.pipeline.user.create_user',
     'social.pipeline.social_auth.associate_user',
     'social.pipeline.debug.debug',
     'social.pipeline.social_auth.load_extra_data',
     'social.pipeline.user.user_details',
-    'app.pipeline.generate_profile',
-#    'social.pipeline.debug.debug'
+    'app.pipeline.generate_profile',#    'social.pipeline.debug.debug'
 )
 
 

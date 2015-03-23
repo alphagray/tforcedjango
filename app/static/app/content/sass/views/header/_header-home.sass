@@ -13,20 +13,17 @@
   border-right: 1px solid #efefef
   .header-dropdown
     position: absolute
-    background-color: #efefef
+    background-color: #333333
     height: 0px
     width: 960px
     overflow: hidden
     margin: auto
     margin-top: 55px
     &.expanded
-      height: 150px
-    &:after
-      content: ""
-      display: table
-      clear: both
+      height: 175px
     .dropdown-content
       float: right
+      margin-top: 30px
     .dropdown-channel
       width: 175px
       height: 125px
@@ -48,8 +45,25 @@
       &:hover
         cursor: pointer
         box-shadow: inset 0px 0px 67px -6px #6f6f6f
+    .extras
+      width: 750px
+      position: absolute
+      right: 15px
+      top: 5px
+      .league
+        height: 15px
+        font-size: 10px
+        line-height: 1.5em
+        &.hp
+          background: linear-gradient(lighten($hp-red, 20%) 50%, $hp-red)
+          border-top-left-radius: 4px
+          border-top-right-radius: 4px
+        &.mana
+          margin-top: 2px
+          background: linear-gradient(lighten($mana-blue, 20%) 50%, $mana-blue)
     .dropdown-filter
       float: left
+      color: white
       .filter
         text-transform: uppercase
     

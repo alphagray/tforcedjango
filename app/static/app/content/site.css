@@ -81,20 +81,17 @@ span.post.cloned {
   border-right: 1px solid #efefef; }
   .header-tabs .header-dropdown {
     position: absolute;
-    background-color: #efefef;
+    background-color: #333333;
     height: 0px;
     width: 960px;
     overflow: hidden;
     margin: auto;
     margin-top: 55px; }
     .header-tabs .header-dropdown.expanded {
-      height: 150px; }
-    .header-tabs .header-dropdown:after {
-      content: "";
-      display: table;
-      clear: both; }
+      height: 175px; }
     .header-tabs .header-dropdown .dropdown-content {
-      float: right; }
+      float: right;
+      margin-top: 30px; }
     .header-tabs .header-dropdown .dropdown-channel {
       width: 175px;
       height: 125px;
@@ -116,8 +113,25 @@ span.post.cloned {
       .header-tabs .header-dropdown .dropdown-channel:hover {
         cursor: pointer;
         box-shadow: inset 0px 0px 67px -6px #6f6f6f; }
+    .header-tabs .header-dropdown .extras {
+      width: 750px;
+      position: absolute;
+      right: 15px;
+      top: 5px; }
+      .header-tabs .header-dropdown .extras .league {
+        height: 15px;
+        font-size: 10px;
+        line-height: 1.5em; }
+        .header-tabs .header-dropdown .extras .league.hp {
+          background: linear-gradient(#ff464b 50%, #DF0006);
+          border-top-left-radius: 4px;
+          border-top-right-radius: 4px; }
+        .header-tabs .header-dropdown .extras .league.mana {
+          margin-top: 2px;
+          background: linear-gradient(#89dcf7 50%, #29bff1); }
     .header-tabs .header-dropdown .dropdown-filter {
-      float: left; }
+      float: left;
+      color: white; }
       .header-tabs .header-dropdown .dropdown-filter .filter {
         text-transform: uppercase; }
 

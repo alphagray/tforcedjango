@@ -92,12 +92,11 @@ span.post.cloned {
     -moz-transition: height 0.5s ease; }
     .header-tabs .header-dropdown.expanded {
       height: 175px;
-      border: 1px solid #cfcfcf;
-      border-top: 2px solid #0ea6d9;
-      box-shadow: inset 0px 50px 90px -60px #333; }
+      border: 1px solid #0ea6d9; }
     .header-tabs .header-dropdown .dropdown-content {
       float: right;
-      margin-top: 30px; }
+      margin-top: 15px;
+      margin-right: 15px; }
     .header-tabs .header-dropdown .dropdown-channel {
       width: 200px;
       height: 145px;
@@ -109,6 +108,8 @@ span.post.cloned {
       transition: box-shadow 0.5s ease;
       -webkit-transition: box-shadow 0.5s ease;
       -moz-transition: box-shadow 0.5s ease; }
+      .header-tabs .header-dropdown .dropdown-channel:last-child {
+        border-right: 1px solid #cfcfcf; }
       .header-tabs .header-dropdown .dropdown-channel[data-channel="proper"] {
         background-image: url("../images/sejuani/sejuani_2.jpg"); }
       .header-tabs .header-dropdown .dropdown-channel[data-channel="lcs"] {
@@ -127,8 +128,8 @@ span.post.cloned {
       color: #0ea6d9;
       text-align: right;
       font-size: 20px;
-      margin-top: 40px;
-      width: 150px;
+      margin-top: 20px;
+      width: 130px;
       line-height: 2em; }
       .header-tabs .header-dropdown .dropdown-filter .filter {
         text-transform: uppercase; }

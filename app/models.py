@@ -520,6 +520,15 @@ class Episode(Content):
         help_text=_("Check to block this episode from iTunes because <br />its "
                     "content might cause the entire show to be <br />removed from iTunes."""))
 
+    author_text = models.CharField(
+        _("author text"), max_length=255, help_text=_("""
+            This tag contains the name of the person or company that is most
+            widely attributed to publishing the Podcast and will be
+            displayed immediately underneath the title of the Podcast.
+            The suggested format is: 'email@example.com (Full Name)'
+            but 'Full Name' only, is acceptable. Multiple authors
+            should be comma separated."""))
+
     ### The following fields relate to the actual audo file itself.
 
     try:

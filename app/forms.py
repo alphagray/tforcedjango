@@ -15,6 +15,7 @@ except ImportError:
 
 from podcasting.utils.widgets import CustomAdminThumbnailWidget
 
+from app.utils.twitter import can_tweet
 from app.models import Profile, Episode, Show
 
 class ProfileForm(forms.ModelForm):
@@ -49,7 +50,7 @@ class BaseShowForm(forms.ModelForm):
         model = Show
         fields = [
             "original_image",
-            "author_text",
+            #"author_text",
             "owner",
             "editor_email",
             "webmaster_email",

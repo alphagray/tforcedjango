@@ -7,9 +7,9 @@ try:
 except ImportError:
     AdminThumbnail = None
 
-from podcasting.forms import AdminShowForm, AdminEpisodeForm, EnclosureForm as AdminEnclosureForm
-from podcasting.models import Show, Episode, Enclosure, EmbedMedia
-from podcasting.utils.twitter import can_tweet
+from app.forms import AdminShowForm, AdminEpisodeForm
+from app.models import Profile, Episode, Show
+from app.utils.twitter import can_tweet
 
 
 class ShowAdmin(admin.ModelAdmin):
@@ -71,16 +71,15 @@ class EpisodeAdmin(admin.ModelAdmin):
 
 
 class EnclosureAdmin(admin.ModelAdmin):
-    form = AdminEnclosureForm
+    #form = AdminEnclosureForm
 
     list_display = ("mime", "url")
     list_filter = ("mime", "episodes")
+    pass
 
 
 class EmbedMediaAdmin(admin.ModelAdmin):
-    model = EmbedMedia
+    pass
 
 admin.site.register(Show, ShowAdmin)
 admin.site.register(Episode, EpisodeAdmin)
-admin.site.register(Enclosure, EnclosureAdmin)
-admin.site.register(EmbedMedia, EmbedMediaAdmin)

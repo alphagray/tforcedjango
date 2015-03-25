@@ -7,7 +7,7 @@ django-autoslug==1.7.2
 django-model-utils==2.2
 django-podcasting==0.10
 django-taggit==0.12.2
--e ajax==2.0.0
+ajax==2.0.0
 logilab-common==0.63.2
 Pillow==2.7.0
 pylint==1.4.1

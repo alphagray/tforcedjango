@@ -202,40 +202,6 @@ class EpisodeITunesAddForm(EpisodeAddForm):
         fields = EpisodeAddForm.Meta.fields + EpisodeAddForm.Meta.extra_fields_itunes
 
 
-class EnclosureForm(forms.ModelForm):
-
-    class Meta:
-        model = Enclosure
-        fields = [
-            "url",
-            "mime",
-            "size",
-            "bitrate",
-            "sample",
-            "channel",
-            "duration",
-        ]
-
-    def clean(self):
-        cleaned_data = super(EnclosureForm, self).clean()
-        for episode in cleaned_data.get('episodes'):
-            try:
-                episode.enclosure_set.get(mime=cleaned_data.get('mime'))
-                raise forms.ValidationError(
-                    _("An episode can only have one enclosure of a specific mimetype. \n "
-                      "Episode '%(item)s' already has an enclosure of mimetype %(mimetype)s"),
-                    params={'item': episode, 'mimetype': cleaned_data.get('mime')})
-            except ObjectDoesNotExist:
-                pass
-
-    def validate_unique(self):
-        exclude = self._get_validation_exclusions()
-
-        try:
-            self.instance.validate_unique(exclude=exclude)
-        except forms.ValidationError as err:
-            self._update_errors(err.message_dict)
-
 
 class AdminShowForm(forms.ModelForm):
 
@@ -248,7 +214,7 @@ class AdminShowForm(forms.ModelForm):
     class Meta:
         model = Show
         fields = [
-            "sites",
+            #"sites",
             "original_image",
             "author_text",
             "owner",

@@ -15,8 +15,8 @@ from app.utils.twitter import can_tweet
 class ShowAdmin(admin.ModelAdmin):
     form = AdminShowForm
 
-    list_display = ["title", "slug", "show_sites", "published_flag"]
-    list_filter = ["title", "published", "sites"]
+    list_display = ["title", "slug", "published_flag"]
+    list_filter = ["title", "published"]
     if AdminThumbnail:
         list_display.append("admin_thumbnail")
         admin_thumbnail = AdminThumbnail(image_field="admin_thumb_sm")

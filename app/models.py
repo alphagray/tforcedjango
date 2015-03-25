@@ -139,7 +139,7 @@ class Profile(models.Model):
     avatar = models.ImageField(width_field="avatar_width", height_field="avatar_height", null=True, blank=True)
     city = models.CharField(max_length=255, null=True, blank=True)
     
-    placeheld = models.BooleanField()
+    placeheld = models.BooleanField(default=False)
     placeholderName = models.CharField(max_length=25, blank=False, null=True, unique=True)
 
     bio = models.TextField(blank = False, null=True)

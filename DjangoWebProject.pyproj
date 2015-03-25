@@ -224,8 +224,12 @@
     <Content Include="app\templates\app\login.html" />
     <Content Include="app\templates\app\loginpartial.html" />
     <None Include="tforcedjango.pubxml" />
-    <Content Include="web.config" />
-    <Content Include="web.debug.config" />
+    <Content Include="web.config">
+      <Publish>True</Publish>
+    </Content>
+    <Content Include="web.debug.config">
+      <Publish>True</Publish>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <None Include="readme.mht">

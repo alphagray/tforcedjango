@@ -7,6 +7,7 @@
     <InterpreterId>{0c2dca26-6776-4e6e-b663-fef4e27285ee}</InterpreterId>
     <InterpreterVersion>2.7</InterpreterVersion>
     <WebBrowserPort>63208</WebBrowserPort>
+    <NameOfLastUsedPublishProfile>tforcedjango</NameOfLastUsedPublishProfile>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -222,6 +223,7 @@
     <Content Include="app\templates\app\layout.html" />
     <Content Include="app\templates\app\login.html" />
     <Content Include="app\templates\app\loginpartial.html" />
+    <None Include="tforcedjango.pubxml" />
     <Content Include="web.config" />
     <Content Include="web.debug.config" />
   </ItemGroup>

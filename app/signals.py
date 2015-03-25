@@ -28,7 +28,7 @@ def update_feeds_on_save(sender, instance, **kwargs):
         # then get the parents objs
         if hasattr(instance, 'parents'):
             for parent in instance.parents.exclude(channels__exact=None):
-
+                pass
             pass
         else:
             pass

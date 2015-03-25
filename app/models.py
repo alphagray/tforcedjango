@@ -126,44 +126,69 @@ except ImportError:
 
 class Profile(models.Model):
     USER_LEVEL_CHOICES = ((1, "Free"),(2, "Premium"),)
-    user = models.OneToOneField(User, null=False, blank=False)
-    userLevel = models.PositiveSmallIntegerField(verbose_name="User Level", choices=USER_LEVEL_CHOICES, default=1)
-    firstName = models.CharField(max_length=142, blank=False)
-    lastName = models.CharField(max_length=142, blank=False)
+    user = models.OneToOneField(User, null=True, blank=False)
+    userLevel = models.PositiveSmallIntegerField(verbose_name="User Level", choices=USER_LEVEL_CHOICES, default=1, null=True, blank=False)
+    firstName = models.CharField(max_length=142, blank=False, null=True)
+    lastName = models.CharField(max_length=142, blank=False, null=True)
 
     datejoined = models.DateField(verbose_name="Date Joined", auto_now_add=True, editable=False)
-    birthday = models.DateField(verbose_name="Birthday")
-    lanzobotpts = models.PositiveIntegerField(verbose_name="Lanzobot Points")
-    avatar_height = models.IntegerField()
-    avatar_width = models.IntegerField()
-    avatar = models.ImageField(width_field="avatar_width", height_field="avatar_height")
-    city = models.CharField(max_length=255)
+    birthday = models.DateField(verbose_name="Birthday", null=True, blank=True)
+    lanzobotpts = models.PositiveIntegerField(verbose_name="Lanzobot Points", null=True, blank=True)
+    avatar_height = models.IntegerField(null=True, blank=True, editable=False)
+    avatar_width = models.IntegerField(null=True, blank=True, editable=False)
+    avatar = models.ImageField(width_field="avatar_width", height_field="avatar_height", null=True, blank=True)
+    city = models.CharField(max_length=255, null=True, blank=True)
+    
+    placeheld = models.BooleanField()
+    placeholderName = models.CharField(max_length=25, blank=False, null=True, unique=True)
 
+    bio = models.TextField(blank = False, null=True)
+
+    @property
+    def last_appeared_on(self): 
+        return Content.objects.exclude(published=None).filter(members__contains=self).orderby("-published").first()
 
     @property
     def fullname(self):
-        return self.firstName + " " + self.lastName
+        if not self.placeheld:
+            return self.firstName + " " + self.lastName 
+        else:
+            return self.placeholderName
 
-
+    @property
+    def is_staff(self):
+        return (self.user.is_staff and self.user.is_active) and not self.placeheld
     
+    @property
+    def is_active(self):
+        return self.user.is_active and not self.placeheld
 
     @classmethod
     def create(cls, username):
         profile = cls(user=User.objects.get_by_natural_key(username))
         return profile
 
-    def is_active(self):
-        return self.user.is_active
-
-    def is_staff(self):
-        return (self.user.is_staff and self.user.is_active)
+    def save(self, *args, **kwargs):
+        if not self.placeheld:
+            if self.is_staff:
+                #make a few fields required.
+                self.clean_fields([placeheld, placeholderName])
+                super(Profile, self).save(*args, **kwargs)
+            else:
+                self.clean_fields([bio, last_appeared, placeheld, placeholderName])
+                super(Profile, self).save(*args, **kwargs)
+        else:
+            self.clean_fields([bio, last_appeared])
 
     def __str__(self):
-        return self.user.username
+        if not self.placeheld:
+            return self.user.username
+        else:
+            return self.placeholderName
 
 class Channel(models.Model):
 
-    title = LowerCaseCharField(max_length=50, unique=True, null=False, blank=False)
+    title = models.CharField(max_length=150, unique=True, null=False, blank=False)
     members = models.ManyToManyField(Profile, limit_choices_to={"user__is_staff":True}, blank=False, null=True, default=None)
     tags = TaggableManager(blank=True)
     objects = models.Manager()
@@ -175,7 +200,7 @@ class Channel(models.Model):
     @property
     def episodes(self):
         from django.db.models import Q
-        return Episode.objects.filter(Q(content_ptr_channel__in=[self])|Q(shows__in=list(self.shows)))
+        return Episode.objects.filter(Q(content_ptr__channel__in=[self])|Q(shows__in=list(self.shows)))
     
     @property
     def blogs(self):
@@ -183,7 +208,7 @@ class Channel(models.Model):
 
     @property
     def posts(self):
-        return Post.objects.filter(Q(content_ptr_channel__in=[self])|Q(blogs__in=list(self.blogs)))
+        return Post.objects.filter(Q(content_ptr__channel__in=[self])|Q(blogs__in=list(self.blogs)))
 
     @property
     def latest_published(self):
@@ -200,7 +225,7 @@ class Channel(models.Model):
 #Abstract base class for all content that goes into a channel. 
 class Content(models.Model):
     from model_utils import managers as mum
-    title = LowerCaseCharField(max_length=255, unique=True, null=False, blank=False)
+    title = models.CharField(max_length=255, unique=True, null=False, blank=False)
     members = models.ManyToManyField(Profile, limit_choices_to={"user__is_staff":True}, null=True, default=None)
     created = models.DateTimeField(_("created"), auto_now_add=True, editable=False)
     updated = models.DateTimeField(_("updated"), auto_now=True, editable=False)

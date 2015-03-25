@@ -30,6 +30,9 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="app\config.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="app\decorators.py">
       <SubType>Code</SubType>
     </Compile>
@@ -42,6 +45,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="app\podcasts.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="app\signals.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="app\templatetags\backend_utils.py">

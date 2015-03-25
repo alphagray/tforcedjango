@@ -161,42 +161,6 @@ class Profile(models.Model):
     def __str__(self):
         return self.user.username
 
-
-#Abstract base class for all content that goes into a channel. 
-class Content(models.Model):
-    from model_utils import managers as mum
-    title = LowerCaseCharField(max_length=255, unique=True, null=False, blank=False)
-    members = models.ManyToManyField(Profile, limit_choices_to={"user__is_staff":True}, null=True, default=None)
-    created = models.DateTimeField(_("created"), auto_now_add=True, editable=False)
-    updated = models.DateTimeField(_("updated"), auto_now=True, editable=False)
-    published = models.DateTimeField(_("published"), null=True, blank=True, editable=False)
-    objects = PassThroughManager.for_queryset_class(mngr.ContentManager)()
-    channel = models.ManyToManyField('Channel', null=True, default=None)
-
-    STATUS_CHOICES = ((1, "Draft"), (2, "Published"),)
-
-    status = models.PositiveSmallIntegerField(choices=STATUS_CHOICES, default=1)
-
-    def publish(self):
-        self.status = 1
-        self.published = datetime.datetime.now().__str__()
-        return self.save()
-
-    @property
-    def channels(self):
-        if(type(self) is Content):
-            return channel
-        else:
-            return super(self.__class__, self).channel
-
-class Community(models.Model):
-    users = models.ManyToManyField(Profile, related_name="communities")
-    content = models.ForeignKey(Content, related_name="communities")
-
-    def __str__(self):
-        return self.content.title + " Users"
-
-
 class Channel(models.Model):
 
     title = LowerCaseCharField(max_length=50, unique=True, null=False, blank=False)
@@ -233,6 +197,39 @@ class Channel(models.Model):
     def __str__(self):
         return self.title
 
+#Abstract base class for all content that goes into a channel. 
+class Content(models.Model):
+    from model_utils import managers as mum
+    title = LowerCaseCharField(max_length=255, unique=True, null=False, blank=False)
+    members = models.ManyToManyField(Profile, limit_choices_to={"user__is_staff":True}, null=True, default=None)
+    created = models.DateTimeField(_("created"), auto_now_add=True, editable=False)
+    updated = models.DateTimeField(_("updated"), auto_now=True, editable=False)
+    published = models.DateTimeField(_("published"), null=True, blank=True, editable=False)
+    objects = PassThroughManager.for_queryset_class(mngr.ContentManager)()
+    channel = models.ManyToManyField(Channel, null=True, default=None)
+
+    STATUS_CHOICES = ((1, "Draft"), (2, "Published"),)
+
+    status = models.PositiveSmallIntegerField(choices=STATUS_CHOICES, default=1)
+
+    def publish(self):
+        self.status = 1
+        self.published = datetime.datetime.now().__str__()
+        return self.save()
+
+    @property
+    def channels(self):
+        if(type(self) is Content):
+            return self.channel.all()
+        else:
+            return self.content_ptr.channels
+
+class Community(models.Model):
+    users = models.ManyToManyField(Profile, related_name="communities")
+    content = models.ForeignKey(Content, related_name="communities")
+
+    def __str__(self):
+        return self.content.title + " Users"
 
 class Show(Content):
     """ 
@@ -602,11 +599,16 @@ class Episode(Content):
     def get_share_description(self):
         return "{0}...".format(self.description[:512])
 
+    @property
     def is_show_published(self):
         for show in self.shows.all():
             if show.published:
                 return True
         return False
+
+    @property
+    def parents(self):
+        return self.shows.all()
 
 class Blog(Content):
     #title = models.CharField(max_length = "200", unique=True)
@@ -623,7 +625,7 @@ class Post(Content):
     blog = models.ManyToManyField(Blog, related_name="posts", null=False, blank=False)
     author = models.ForeignKey(Profile, related_name="author", limit_choices_to={'user__is_staff':True})
     tags = TaggableManager(blank = True)
-    slug = AutoSlugField(_("slug"), populate_from="title", unique=True)
+    slug = AutoSlugField(populate_from="title", unique=True)
     
     def save(self):
         # here we're just appending the author's name to the title if this is the first time it's been saved.
@@ -632,9 +634,29 @@ class Post(Content):
             self.title = tempTitle
         return super(Post, self).save()
         
+    @property
+    def parents(self):
+        return self.blog.all()
 
     pass
 #End post
+
+
+
+class Feed(models.Model):
+    ''' This is a custom feed that is created and saved for a given user. 
+        It's really just a record with UUID that points to a feed URL so that we can push notifications out 
+        whenever their feed would be updated. '''
+    link = models.URLField()
+    profile = models.ForeignKey(Profile , related_name="feeds", null=False)
+
+    @property
+    def user(self):
+        return self.profile.user
+
+    pass
+#end feed
+
 
 class Calendar(Content):
     pass
@@ -642,7 +664,7 @@ class Calendar(Content):
 
 class Event(Content):
 
-    calendars = models.ManyToManyField(Calendar)
+    calendars = models.ManyToManyField(Calendar, related_name="events", null=False)
 
     IS_EXCLUSIVE = (
             (1, "Public"),
@@ -657,6 +679,10 @@ class Event(Content):
     start_date = models.DateTimeField(blank=False)
     end_date = models.DateTimeField(blank=False)
     tags = TaggableManager(blank = True)
+
+    @property
+    def parent(self):
+        return self.calendars.all()
 
     def clean(self):
         if self.use_signups < 2:

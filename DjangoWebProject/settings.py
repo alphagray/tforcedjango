@@ -5,6 +5,8 @@ Django settings for DjangoWebProject project.
 from os import path
 PROJECT_ROOT = path.dirname(path.abspath(path.dirname(__file__)))
 
+ROOT_PATH = path.join(path.dirname(__file__), '..')
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -84,6 +86,7 @@ STATIC_URL = '/static/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
+    path.abspath(path.join(STATIC_ROOT, STATIC_URL)),
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
@@ -145,6 +148,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.auth.context_processors.auth',
     'social.apps.django_app.context_processors.backends',
     'social.apps.django_app.context_processors.login_redirect',
+    'django.core.context_processors.static',
 )
 
 INSTALLED_APPS = (

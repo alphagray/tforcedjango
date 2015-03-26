@@ -61,6 +61,7 @@ class BaseShowForm(forms.ModelForm):
             "explicit", "link",
             "on_itunes",
             "publish",
+            "members",
         ]
         if "taggit" in settings.INSTALLED_APPS:
             fields.append("tags")
@@ -123,6 +124,7 @@ class BaseEpisodeForm(forms.ModelForm):
             "sample",
             "channel",
             "duration",
+            "members",
         ]
         if "taggit" in settings.INSTALLED_APPS:
             fields.append("tags")
@@ -141,7 +143,17 @@ class BaseEpisodeForm(forms.ModelForm):
         ]
 
     def save(self):
+        instance = self.instance
+        if instance.pk:
+            nummembers = len(instance.members.all())
+            numtags = len(instance.tags.all())
+            untaggedMembers = instance.members.filter(username__in=[item.get('name') for item in instances.tags.all().values('name')])
+            # the sql that i need is 
+            # SELECT * from (PROFILES join MEMBERS_SHOWS on PROFILES.id = MEMBERS_SHOWS.profileid) join (select tag_id from TAGGED_ITEMS where object_id = MEMBERS_SHOWS.showid)
         instance = super(BaseEpisodeForm, self).save()
+        if instance.members.all():
+            #stubby
+            pass
 
         if can_tweet() and self.cleaned_data["tweet"]:
             instance.tweet()

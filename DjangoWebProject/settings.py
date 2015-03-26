@@ -7,8 +7,8 @@ PROJECT_ROOT = path.dirname(path.abspath(path.dirname(__file__)))
 
 ROOT_PATH = path.join(path.dirname(__file__), '..')
 
-#DEBUG = True
-#TEMPLATE_DEBUG = DEBUG
+DEBUG = True
+TEMPLATE_DEBUG = DEBUG
 
 ALLOWED_HOSTS = (
     'localhost',

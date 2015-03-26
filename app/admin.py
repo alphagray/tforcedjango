@@ -8,13 +8,12 @@ except ImportError:
     AdminThumbnail = None
 
 from app.forms import AdminShowForm, AdminEpisodeForm
-from app.models import Profile, Episode, Show
+from app.models import Content, Profile, Episode, Show
 from app.utils.twitter import can_tweet
 
 
 class ShowAdmin(admin.ModelAdmin):
     form = AdminShowForm
-
     list_display = ["title", "slug", "published_flag"]
     list_filter = ["title", "published"]
     if AdminThumbnail:
@@ -36,7 +35,6 @@ class ShowAdmin(admin.ModelAdmin):
 
 class EpisodeAdmin(admin.ModelAdmin):
     form = AdminEpisodeForm
-
     list_display = ["title", "episode_shows", "slug", "episode_sites", "published_flag"]
     list_filter = ["shows", "published"]
     if AdminThumbnail:

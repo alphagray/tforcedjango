@@ -7,6 +7,7 @@
     <InterpreterId>{0c2dca26-6776-4e6e-b663-fef4e27285ee}</InterpreterId>
     <InterpreterVersion>2.7</InterpreterVersion>
     <WebBrowserPort>63208</WebBrowserPort>
+    <NameOfLastUsedPublishProfile>tforcedjango</NameOfLastUsedPublishProfile>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -30,6 +31,12 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="app\admin.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="app\config.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="app\decorators.py">
       <SubType>Code</SubType>
     </Compile>
@@ -42,6 +49,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="app\podcasts.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="app\signals.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="app\templatetags\backend_utils.py">
@@ -213,8 +223,13 @@
     <Content Include="app\templates\app\layout.html" />
     <Content Include="app\templates\app\login.html" />
     <Content Include="app\templates\app\loginpartial.html" />
-    <Content Include="web.config" />
-    <Content Include="web.debug.config" />
+    <None Include="tforcedjango.pubxml" />
+    <Content Include="web.config">
+      <Publish>True</Publish>
+    </Content>
+    <Content Include="web.debug.config">
+      <Publish>True</Publish>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <None Include="readme.mht">

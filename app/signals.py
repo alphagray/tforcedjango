@@ -1,4 +1,4 @@
-from app.models import *
+from app.models import Content
 
 def get_subclasses(cls):
     result = [cls]
@@ -10,6 +10,13 @@ def get_subclasses(cls):
                 result.append(subclass)
                 classes_to_inspect.append(sublcass)
     return result
+
+
+def post_to_reddit_on_save(sender, instance, **kwargs):
+    if instance.published:
+        # this argument will create a reddit 
+        pass
+    pass
 
 
 def update_feeds_on_save(sender, instance, **kwargs):

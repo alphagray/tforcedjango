@@ -145,16 +145,16 @@ class BaseEpisodeForm(forms.ModelForm):
     def save(self):
         instance = self.instance
         if instance.pk:
-            nummembers = len(instance.members.all())
-            numtags = len(instance.tags.all())
-            untaggedMembers = instance.members.filter(username__in=[item.get('name') for item in instances.tags.all().values('name')])
-            # the sql that i need is 
-            # SELECT * from (PROFILES join MEMBERS_SHOWS on PROFILES.id = MEMBERS_SHOWS.profileid) join (select tag_id from TAGGED_ITEMS where object_id = MEMBERS_SHOWS.showid)
+            membersAdded = True
+            #nummembers = len(instance.members.all())
+            untaggedMembers = instance.members.exclude(user__username__in=[item.get('name') for item in instances.tags.all().values('name')])
+            for member in untaggedMembers:
+                instance.tags.add(member.username)
         instance = super(BaseEpisodeForm, self).save()
-        if instance.members.all():
-            #stubby
-            pass
-
+        if not membersAdded:
+            untaggedmembers = instance.members.exclude(user__username__in=[item.get('name') for item in instances.tags.all().values('name')])
+            for member in untaggedMembers:
+                instance.tags.add(member.username)
         if can_tweet() and self.cleaned_data["tweet"]:
             instance.tweet()
 

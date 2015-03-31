@@ -8,8 +8,14 @@ except ImportError:
     AdminThumbnail = None
 
 from app.forms import AdminShowForm, AdminEpisodeForm
-from app.models import Content, Profile, Episode, Show
+from app.models import *
 from app.utils.twitter import can_tweet
+
+
+class ProfileAdmin(admin.ModelAdmin):
+    list_display = ['username', 'fullname', 'userLevel', 'birthday', 'avatar', 'city', 'bio', 'last_appeared_on', 'is_staff', 'is_active']
+    list_filter = ['username', 'userLevel', 'datejoined', 'last_appeared_on', 'is_staff', 'is_active']
+
 
 
 class ShowAdmin(admin.ModelAdmin):
@@ -68,16 +74,6 @@ class EpisodeAdmin(admin.ModelAdmin):
         return form.save()
 
 
-class EnclosureAdmin(admin.ModelAdmin):
-    #form = AdminEnclosureForm
-
-    list_display = ("mime", "url")
-    list_filter = ("mime", "episodes")
-    pass
-
-
-class EmbedMediaAdmin(admin.ModelAdmin):
-    pass
-
+admin.site.register(Profile, ProfileAdmin)
 admin.site.register(Show, ShowAdmin)
 admin.site.register(Episode, EpisodeAdmin)

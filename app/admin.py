@@ -13,9 +13,9 @@ from app.utils.twitter import can_tweet
 
 
 class ProfileAdmin(admin.ModelAdmin):
-    list_display = ['username', 'fullname', 'userLevel', 'birthday', 'avatar', 'city', 'bio', 'last_appeared_on', 'is_staff', 'is_active']
-    list_filter = ['username', 'userLevel', 'datejoined', 'last_appeared_on', 'is_staff', 'is_active']
-
+    #list_display = ['username', 'fullname', 'userLevel', 'birthday', 'avatar', 'city', 'bio', 'last_appeared_on', 'is_staff', 'is_active']
+    #list_filter = ['username', 'userLevel', 'datejoined', 'last_appeared_on', 'is_staff', 'is_active']
+    pass
 
 
 class ShowAdmin(admin.ModelAdmin):
@@ -74,6 +74,6 @@ class EpisodeAdmin(admin.ModelAdmin):
         return form.save()
 
 
-admin.site.register(Profile, ProfileAdmin)
+#admin.site.register(Profile, ProfileAdmin)
 admin.site.register(Show, ShowAdmin)
 admin.site.register(Episode, EpisodeAdmin)

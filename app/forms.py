@@ -128,6 +128,7 @@ class BaseEpisodeForm(forms.ModelForm):
             "title", "subtitle",
             "description",
             "tracklist",
+            "url",
             "hours", "minutes", "seconds",
             "publish",
             "url",

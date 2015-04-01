@@ -14,8 +14,8 @@ from app.utils.twitter import can_tweet
 
 class ProfileAdmin(admin.ModelAdmin):
     form = ProfileForm
-    list_display = ['username', 'fullname', 'userLevel', 'birthday', 'avatar', 'city', 'bio']
-    list_filter = ['username', 'userLevel', 'datejoined']
+    #list_display = ['username', 'fullname', 'userLevel', 'birthday', 'avatar', 'city', 'bio']
+    list_filter = ['datejoined', 'user__username']
 
 
 

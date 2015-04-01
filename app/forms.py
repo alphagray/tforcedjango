@@ -6,6 +6,7 @@ from django import forms
 from django.conf import settings
 from django.contrib.auth.forms import AuthenticationForm
 from django.core.exceptions import ObjectDoesNotExist
+from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
 
 try:
@@ -17,24 +18,51 @@ from podcasting.utils.widgets import CustomAdminThumbnailWidget
 
 from app.utils.twitter import can_tweet
 from app.models import Profile, Episode, Show
+from django.contrib.auth.models import User
 
 class ProfileForm(forms.ModelForm):
-    username = forms.CharField(help_text="", enabled=False)
+    
+    username = forms.CharField(help_text="", widget=forms.TextInput({ 'disabled': 'disabled' }))
+    
+    def __init__(self, *args, **kwargs):
+        super(ProfileForm, self).__init__(*args, **kwargs)
+        if self.instance.pk and self.instance.user:
+            self.fields['username'].initial = self.instance.username
+        else:
+            self.fields['username'] = forms.ModelChoiceField(queryset=User.objects.filter(profile=None))
+        if self.instance.pk and not self.instance.user:
+            self.fields['placeheld'].required = True
+            self.fields['placeheld'].initial = True
+            self.fields['placeheld'].widget = forms.BooleanField({ 'checked': 'true', 'disabled': 'disabled'})
+            self.fields['placeholderName'].required = True
+
     #fullname = forms.C
     class Meta:
         model = Profile
-        fields = ['username', 
-                  'userLevel', 
+        fields = ['userLevel', 
                   'firstName', 
                   'lastName', 
-                  'datejoined',
                   'birthday',
                   'lanzobotpts',
                   'avatar',
                   'city',
-                  'placeheld'
+                  'placeheld',
                   'placeholderName',
                   'bio']
+
+    def clean(self):
+        cleaned_data = super(ProfileForm, self).clean()
+        user = cleaned_data.get("username")
+        placeheld = cleaned_data.get("placeheld")
+        pName = cleaned_data.get("placeholderName")
+        if not user:
+            if not placeheld:
+                self.add_error(ValidationError(_('Select a username or mark the Placeheld field as true.'), code='invalid'))
+            pass
+        pass
+
+
+            
 
 
 class BootstrapAuthenticationForm(AuthenticationForm):

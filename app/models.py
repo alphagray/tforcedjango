@@ -139,8 +139,8 @@ class Profile(models.Model):
     avatar = models.ImageField(width_field="avatar_width", height_field="avatar_height", null=True, blank=True)
     city = models.CharField(max_length=255, null=True, blank=True)
     
-    placeheld = models.BooleanField(default=False, null=False, blank=True)
-    placeholderName = models.CharField(max_length=25, blank=False, null=True, unique=True)
+    placeheld = models.BooleanField("Is A Placeholder Profile", default=False, null=False, blank=True)
+    placeholderName = models.CharField(max_length=25, verbose_name="Placeholder Profile Name", blank=False, null=True, unique=True)
 
     bio = models.TextField(blank = False, null=True)
 

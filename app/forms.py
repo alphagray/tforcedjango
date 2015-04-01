@@ -19,9 +19,22 @@ from app.utils.twitter import can_tweet
 from app.models import Profile, Episode, Show
 
 class ProfileForm(forms.ModelForm):
+    username = forms.CharField(help_text="", enabled=False)
+    #fullname = forms.C
     class Meta:
         model = Profile
-        fields = []
+        fields = ['username', 
+                  'userLevel', 
+                  'firstName', 
+                  'lastName', 
+                  'datejoined',
+                  'birthday',
+                  'lanzobotpts',
+                  'avatar',
+                  'city',
+                  'placeheld'
+                  'placeholderName',
+                  'bio']
 
 
 class BootstrapAuthenticationForm(AuthenticationForm):

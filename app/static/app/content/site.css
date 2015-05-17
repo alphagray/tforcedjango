@@ -1,88 +1,171 @@
-/*
-Error: File to import not found or unreadable: login.
-       Load paths:
-         
-        on line 1 of c:/Users/Alex/Documents/Projects/tforcedjango/app/static/app/content/sass/views/login/__login.sass
-        from line 3 of sass/views/__views.sass
-        from line 6 of c:/Users/Alex/Documents/Projects/tforcedjango/app/static/app/content/sass/trunk.sass
+@import url(normalize.css);
+@import url("http://fonts.googleapis.com/css?family=Roboto:400,300,500,700");
+@import url("http://fonts.googleapis.com/css?family=Slabo+27px");
+@font-face {
+  font-family: "IcoMoon-Free";
+  src: url("../fonts/IcoMoon-Free.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal; }
+html, body {
+  -webkit-font-smoothing: antialiased;
+  background-color: #efefef;
+  font-family: "Roboto", sans-serif; }
 
-1: 
-2: 
-3: @import 'normalize.css'
-4: @import 'base/__base'
-5: @import 'components/__components'
-6: @import 'views/__views'
+* {
+  box-sizing: border-box; }
 
-Backtrace:
-c:/Users/Alex/Documents/Projects/tforcedjango/app/static/app/content/sass/views/login/__login.sass:1
-sass/views/__views.sass:3
-c:/Users/Alex/Documents/Projects/tforcedjango/app/static/app/content/sass/trunk.sass:6
-c:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.4.13/lib/sass/tree/import_node.rb:66:in `rescue in import'
-c:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.4.13/lib/sass/tree/import_node.rb:45:in `import'
-c:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.4.13/lib/sass/tree/import_node.rb:28:in `imported_file'
-c:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.4.13/lib/sass/tree/import_node.rb:37:in `css_import?'
-c:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.4.13/lib/sass/tree/visitors/perform.rb:311:in `visit_import'
-c:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.4.13/lib/sass/tree/visitors/base.rb:36:in `visit'
-c:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.4.13/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
-c:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.4.13/lib/sass/stack.rb:79:in `block in with_base'
-c:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.4.13/lib/sass/stack.rb:115:in `with_frame'
-c:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.4.13/lib/sass/stack.rb:79:in `with_base'
-c:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.4.13/lib/sass/tree/visitors/perform.rb:158:in `visit'
-c:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.4.13/lib/sass/tree/visitors/perform.rb:325:in `block (2 levels) in visit_import'
-c:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.4.13/lib/sass/tree/visitors/perform.rb:325:in `map'
-c:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.4.13/lib/sass/tree/visitors/perform.rb:325:in `block in visit_import'
-c:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.4.13/lib/sass/stack.rb:88:in `block in with_import'
-c:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.4.13/lib/sass/stack.rb:115:in `with_frame'
-c:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.4.13/lib/sass/stack.rb:88:in `with_import'
-c:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.4.13/lib/sass/tree/visitors/perform.rb:322:in `visit_import'
-c:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.4.13/lib/sass/tree/visitors/base.rb:36:in `visit'
-c:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.4.13/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
-c:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.4.13/lib/sass/stack.rb:79:in `block in with_base'
-c:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.4.13/lib/sass/stack.rb:115:in `with_frame'
-c:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.4.13/lib/sass/stack.rb:79:in `with_base'
-c:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.4.13/lib/sass/tree/visitors/perform.rb:158:in `visit'
-c:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.4.13/lib/sass/tree/visitors/perform.rb:325:in `block (2 levels) in visit_import'
-c:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.4.13/lib/sass/tree/visitors/perform.rb:325:in `map'
-c:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.4.13/lib/sass/tree/visitors/perform.rb:325:in `block in visit_import'
-c:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.4.13/lib/sass/stack.rb:88:in `block in with_import'
-c:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.4.13/lib/sass/stack.rb:115:in `with_frame'
-c:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.4.13/lib/sass/stack.rb:88:in `with_import'
-c:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.4.13/lib/sass/tree/visitors/perform.rb:322:in `visit_import'
-c:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.4.13/lib/sass/tree/visitors/base.rb:36:in `visit'
-c:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.4.13/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
-c:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.4.13/lib/sass/stack.rb:79:in `block in with_base'
-c:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.4.13/lib/sass/stack.rb:115:in `with_frame'
-c:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.4.13/lib/sass/stack.rb:79:in `with_base'
-c:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.4.13/lib/sass/tree/visitors/perform.rb:158:in `visit'
-c:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.4.13/lib/sass/tree/visitors/base.rb:52:in `block in visit_children'
-c:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.4.13/lib/sass/tree/visitors/base.rb:52:in `map'
-c:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.4.13/lib/sass/tree/visitors/base.rb:52:in `visit_children'
-c:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.4.13/lib/sass/tree/visitors/perform.rb:167:in `block in visit_children'
-c:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.4.13/lib/sass/tree/visitors/perform.rb:179:in `with_environment'
-c:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.4.13/lib/sass/tree/visitors/perform.rb:166:in `visit_children'
-c:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.4.13/lib/sass/tree/visitors/base.rb:36:in `block in visit'
-c:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.4.13/lib/sass/tree/visitors/perform.rb:186:in `visit_root'
-c:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.4.13/lib/sass/tree/visitors/base.rb:36:in `visit'
-c:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.4.13/lib/sass/tree/visitors/perform.rb:157:in `visit'
-c:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.4.13/lib/sass/tree/visitors/perform.rb:8:in `visit'
-c:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.4.13/lib/sass/tree/root_node.rb:36:in `css_tree'
-c:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.4.13/lib/sass/tree/root_node.rb:29:in `render_with_sourcemap'
-c:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.4.13/lib/sass/engine.rb:368:in `_render_with_sourcemap'
-c:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.4.13/lib/sass/engine.rb:285:in `render_with_sourcemap'
-c:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.4.13/lib/sass/plugin/compiler.rb:490:in `update_stylesheet'
-c:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.4.13/lib/sass/plugin/compiler.rb:215:in `block in update_stylesheets'
-c:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.4.13/lib/sass/plugin/compiler.rb:209:in `each'
-c:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.4.13/lib/sass/plugin/compiler.rb:209:in `update_stylesheets'
-c:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.4.13/lib/sass/plugin/compiler.rb:470:in `on_file_changed'
-c:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.4.13/lib/sass/plugin/compiler.rb:328:in `block in watch'
-c:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.4.13/vendor/listen/lib/listen/listener.rb:252:in `call'
-c:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.4.13/vendor/listen/lib/listen/listener.rb:252:in `on_change'
-c:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.4.13/vendor/listen/lib/listen/listener.rb:290:in `block in initialize_adapter'
-c:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.4.13/vendor/listen/lib/listen/adapters/polling.rb:48:in `call'
-c:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.4.13/vendor/listen/lib/listen/adapters/polling.rb:48:in `poll_changed_directories'
-c:/Ruby200/lib/ruby/gems/2.0.0/gems/sass-3.4.13/vendor/listen/lib/listen/adapter.rb:299:in `block in start_poller'
-*/
-body:before {
-  white-space: pre;
-  font-family: monospace;
-  content: "Error: File to import not found or unreadable: login.\A        Load paths:\A          \A         on line 1 of c:/Users/Alex/Documents/Projects/tforcedjango/app/static/app/content/sass/views/login/__login.sass\A         from line 3 of sass/views/__views.sass\A         from line 6 of c:/Users/Alex/Documents/Projects/tforcedjango/app/static/app/content/sass/trunk.sass\A \A 1: \A 2: \A 3: @import 'normalize.css'\A 4: @import 'base/__base'\A 5: @import 'components/__components'\A 6: @import 'views/__views'"; }
+.template, .hidden {
+  display: none; }
+
+.icon {
+  font-family: "IcoMoon-Free";
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-feature-settings: "liga";
+  -moz-font-feature-settings: "liga=1";
+  -moz-font-feature-settings: "liga";
+  -ms-font-feature-settings: "liga" 1;
+  -o-font-feature-settings: "liga";
+  font-feature-settings: "liga";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+
+i.icon.search:after {
+  content: "search"; }
+
+i.icon.user:after {
+  content: "user"; }
+
+#tfn-app {
+  background-color: white; }
+
+#tfn-app {
+  margin: 10px auto;
+  width: 960px;
+  content: "";
+  display: table;
+  clear: both; }
+
+.partial {
+  width: 100%;
+  background-color: white;
+  float: left;
+  margin: 0 auto; }
+
+.post {
+  margin-top: 10px;
+  padding: 10px;
+  font-size: 14px; }
+
+span.post.cloned {
+  display: block; }
+
+.tfn-header {
+  background-color: white;
+  text-align: center; }
+
+.header-tabs {
+  width: 960px;
+  position: relative;
+  margin: 0 auto; }
+
+.header-tabs {
+  content: "";
+  display: table;
+  clear: both;
+  border-left: 1px solid #efefef;
+  border-right: 1px solid #efefef; }
+  .header-tabs .header-dropdown {
+    position: absolute;
+    background-color: white;
+    height: 0px;
+    width: 960px;
+    overflow: hidden;
+    margin: auto;
+    margin-top: 55px;
+    transition: height 0.5s ease;
+    -webkit-transition: height 0.5s ease;
+    -moz-transition: height 0.5s ease; }
+    .header-tabs .header-dropdown.expanded {
+      height: 175px;
+      border: 1px solid #0ea6d9; }
+    .header-tabs .header-dropdown .dropdown-content {
+      float: right;
+      margin-top: 15px;
+      margin-right: 15px; }
+    .header-tabs .header-dropdown .dropdown-channel {
+      width: 200px;
+      height: 145px;
+      float: left;
+      background-size: 100% 100%;
+      border: 1px solid #cfcfcf;
+      border-right: none;
+      box-shadow: inset 0px 0px 250px 50px white;
+      transition: box-shadow 0.5s ease;
+      -webkit-transition: box-shadow 0.5s ease;
+      -moz-transition: box-shadow 0.5s ease; }
+      .header-tabs .header-dropdown .dropdown-channel:last-child {
+        border-right: 1px solid #cfcfcf; }
+      .header-tabs .header-dropdown .dropdown-channel[data-channel="proper"] {
+        background-image: url("../images/sejuani/sejuani_2.jpg"); }
+      .header-tabs .header-dropdown .dropdown-channel[data-channel="lcs"] {
+        background-image: url("../images/poppy/poppy_3.jpg"); }
+      .header-tabs .header-dropdown .dropdown-channel[data-channel="ozlol"] {
+        background-image: url("../images/renekton/renekton_3.jpg"); }
+      .header-tabs .header-dropdown .dropdown-channel[data-channel="wards"] {
+        background-image: url("../images/urf/urf_1.jpg"); }
+        .header-tabs .header-dropdown .dropdown-channel[data-channel="wards"] img {
+          margin-top: 40px; }
+      .header-tabs .header-dropdown .dropdown-channel img {
+        width: 150px; }
+      .header-tabs .header-dropdown .dropdown-channel:hover {
+        cursor: pointer;
+        box-shadow: inset 0px 0px 67px -6px white; }
+    .header-tabs .header-dropdown .dropdown-filter {
+      float: left;
+      color: #0ea6d9;
+      text-align: right;
+      font-size: 20px;
+      margin-top: 20px;
+      width: 130px;
+      line-height: 2em; }
+      .header-tabs .header-dropdown .dropdown-filter .filter {
+        text-transform: uppercase; }
+        .header-tabs .header-dropdown .dropdown-filter .filter:hover {
+          cursor: pointer;
+          color: #29bff1; }
+
+.tab {
+  float: left;
+  line-height: 3em;
+  text-transform: uppercase;
+  font-size: 16px;
+  margin-left: 18px;
+  padding-left: 5px;
+  padding-right: 5px;
+  font-family: "Slabo 27px"; }
+  .tab.home {
+    width: 100px;
+    height: 100%;
+    background-color: rgba(120, 120, 120, 0.25);
+    margin-right: 15px;
+    text-indent: -9999px; }
+  .tab.search {
+    border-left: 1px solid #efefef;
+    border-right: 1px solid #efefef;
+    margin-left: 15px; }
+    .tab.searchsearch:hover {
+      background-color: white; }
+  .tab.account {
+    margin-left: 0px;
+    padding-left: 26px;
+    padding-right: 20px; }
+  .tab:hover, .tab.selected {
+    background-color: #efefef;
+    cursor: pointer; }
+
+/*# sourceMappingURL=site.css.map */
